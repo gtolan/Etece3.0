@@ -1,0 +1,137 @@
+<section>
+    <div class="container-fluid contentTask">
+<div class="col-md-4 col-md-12 taskRepeat">
+    <!-- new attempt -->
+    <div class="btn-group btn-group-justified" role="group">
+            <div class="btn-group" role="group">
+              <button class="btn btn-primary btnFilters" ng-click="filterbox2 = !filterbox2"><span class="glyphicon glyphicon-search"></span> Search</button>
+            </div>
+            <div class="btn-group" role="group">
+              <button class="btn btn-primary btnFilters" ng-click="filterbox = !filterbox"><span class="glyphicon glyphicon-cog"></span> Filters</button>
+            </div>
+             <div class="btn-group" role="group">
+              <button ng-show="!showBoxOne " class="btn btn-primary btnFilters" ng-click="showBoxOne = !showBoxOne; showme=false"><span class="glyphicon glyphicon-remove"></span> Hide
+              map</button>
+              <button ng-hide="!showBoxOne "class="btn btn-primary btnFilters" ng-click="showBoxOne = !showBoxOne; showme=true"><span class="glyphicon glyphicon-map-marker"></span> Show
+              map</button>
+              </div> 
+          </div>
+    <!-- new attempt -->
+    <div class="well filterbox2" ng-show="filterbox2">
+            <p>Start typing to search for tasks</p>
+            <input type="text" class="form-control" placeholder="Search for tasks..." ng-model="search.$">
+        </div>
+    
+    <div class="well filterbox" ng-show="filterbox"><!-- new attempt  -->
+            <div class="row">
+            <div class="col-xs-6">
+              <p>Task status</p>
+              <button class="sortBy" ng-click="myFilter = null">All</button><button class="sortBy" ng-click="myFilter = { statusOpen: true }">Open</button>
+            </div>
+            <div class="col-xs-6">
+              <p>Task Category</p>
+              <select class="sortBy" ng-model="selectedCat" ng-value="x.filter" ng-options="x.cat for x in taskCategories">
+                </select>  
+            </div>    
+            </div>    
+            <p>Task type</p>
+            <button class="sortBy" ng-click="myFilter = null">All</button><button class="sortBy" ng-click="myFilter = { inPersonTask: true }">Tasks with location</button><button class="sortBy" ng-click="myFilter = { onlineTask: true }">Online tasks</button>
+            <p>Sort by</p>
+            <button class="sortBy" ng-click="order('price')">Price</button>
+            <span class="sortorder" ng-show="predicate === 'price'" ng-class="{reverse:reverse}"></span>
+            <button class="sortBy" ng-click="order('created')">Created</button>
+            <span class="sortorder" ng-show="predicate === 'created'" ng-class="{reverse:reverse}"></span>
+            <button class="sortBy" ng-click="order('title')">Title</button>
+            <span class="sortorder" ng-show="predicate === 'title'" ng-class="{reverse:reverse}"></span>
+            <button class="sortBy" ng-click="myFilter =  { statusOpen : true }">Open</button>    
+ 
+    </div><!-- new attempt -->
+    <hr>
+        <div class="scrollable">
+    <ul class="list-group">
+        <li class="list-group-item taskRepeatPad" data-ng-repeat="task in myTasks | filter:search | filter:myFilter | customFilter: selectedCat.filter | orderBy:predicate:reverse | filter:x as results">  
+         <a data-ui-sref="tasks.view({ taskId: task._id })">
+             <div class="row taskRepeatRow">
+                 <div class="col-xs-2 taskRepeatImg noPadding"> 
+                 <img class="taskProfileImg" src="{{task.profileImageURL}}" onerror="if (this.src != 'default.png') this.src = '../modules/users/client/img/profile/default.png';">
+                 </div>
+                 
+                 <div class="col-xs-7 midTaskRepeat"> <!---center div -->
+<h3 class="list-group-item-heading taskTitleRepeat">&nbsp; &nbsp; {{ task.title | limitTo: 19 }}{{ task.title.length > 20 ? '...' : ''}}</h3>
+                  
+                     
+                     <h4 class="taskLocatRepeat listIcon"><i class="fa fa-map-marker" aria-hidden="true"></i> &nbsp; &nbsp; {{task.taskLocation}} </h4>
+                     <small ng-hide="!task.comments.length > 0" class="list-group-item-text PostedOn"><span class="glyphicon glyphicon-comment"></span> &nbsp;&nbsp; {{ task.comments.length }} comments
+<!-- <span data-ng-bind="task.user.displayName" data-ng-if="task.user"></span> -->
+<!--<span data-ng-if="!task.user">Deleted User</span>-->
+         </small>
+                     <small ng-hide="!task.offers.length > 0" class="list-group-item-text PostedOn"><i class="fa fa-wpforms" aria-hidden="true"></i> &nbsp;&nbsp; {{ task.offers.length }} offers
+<!--- <span data-ng-bind="task.user.displayName" data-ng-if="task.user"></span> -->
+<!--<span data-ng-if="!task.user">Deleted User</span>-->
+         </small>
+                     <small class="list-group-item-text PostedOn">Posted on <span data-ng-bind="task.created | date:'mediumDate'"></span></small>               
+                  </div><!--nd of center div -->
+                    </a>
+             
+             <div class="col-xs-3 noPadding PriceSection">
+               <h3 class="text-center taskPriceRepeat">&euro;{{task.price}}</h3> 
+                 <button class="btn-primary btn-block EarnBut" ng-hide="task.statusAssigned" data-ui-sref="tasks.view({ taskId: task._id })" ng-click="showme=false">Open</button>
+                 <button disabled class="btn btn-default assigned" ng-disabled="disabled" ng-show="task.statusAssigned && !task.statusClosed" data-ui-sref="tasks.view({ taskId: task._id })" ng-click="showme=false" disabled/>Assigned</button>
+                 <button disabled class="btn btn-default btn-block completed" ng-disabled="disabled" ng-show="task.statusClosed" data-ui-sref="tasks.view({ taskId: task._id })" ng-click="showme=false" disabled/>Complete</button>
+             </div>
+             
+         </div>
+        </li>
+    </ul>
+  </div>
+        
+</div> <!-- close the col-sm-4 -->   
+        
+        <div class="col-md-8 col-md-12 noPadding">
+        <ui-view></ui-view> 
+        <div class="" ng-show="!showBoxOne" ng-controller="NgMapController as vm">
+  
+    
+  <!--      <div collapse="mapCollapsed"> -->
+  <!--             <div class="well mapWell"> -->
+
+                <ng-map default-style="false" style="height:550px;" scrollwheel="false" zoom="12" center="Dublin, Ireland" geo-fallback-center="current-location">
+        <info-window id="myInfoWindow">
+            <div ng-non-bindable>
+               <div class="row">
+                <div class="col-xs-5 priceCol">
+                  <h2 class="priceInfoW">€ {{selectedTask.price}}</h2>
+                   </div>
+                <div class="col-xs-5">
+                   <img class="priceCol3" src="{{selectedTask.profileImageURL}}">
+                   </div>
+                </div>
+                <hr>
+                
+                <p class="mapTitle">{{selectedTask.title}}</p>
+                <p class="mapDate">Due Date:{{selectedTask.dueDate | date:'mediumDate'}}</p>
+                
+                <p class="mapDate">Created on: {{selectedTask.created | date:'mediumDate'}}</p>
+                <button type="button" class="moreInfoBtn btn-block" data-ui-sref=
+      "tasks.view({ taskId: selectedTask._id })" ng-click="showme=false">More Info</button>
+            </div>
+        </info-window>
+        <marker ng-hide="task.user._id !== vm.user._id" data-ng-repeat="task in myTasks | filter:search | filter:myFilter | customFilter: selectedCat.filter | orderBy:predicate:reverse | filter:x as results" data-ui-sref=
+          "tasks.view({ taskId: task._id })"
+                position="{{task.taskLocation}}"
+                icon="{url:'modules/core/client/img/Animation/locationPinT.png',
+                scaledSize:[25,50],
+                origin: [0,0],
+                anchor: [10,10]}",
+                title="{{task.title}}" id="{{task.id}}" on-click="showCity(event, task)">
+        </marker>
+    </ng-map>
+            </div><!-- close well -->
+        </div><!-- close collapse -->
+            <section>
+            
+            </section>
+
+    </div>    
+</section>
+
