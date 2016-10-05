@@ -1,7 +1,7 @@
 <div ng-controller="ModalLoginCtrl">
   <script id="myModalContent.html" type="text/ng-template">
         <div class="modal-header">
-            <h3 class="modal-title text-center">Login</h3>
+            <h3 class="modal-title text-center">Acesso Usuario</h3>
         </div>
 
                     
@@ -11,7 +11,10 @@
     
     <!-- socia media login -->
     <div class="row">
-      <div class="col-md-12 text-center socialAcc">
+<div class="col-md-12 text-center socialAcc">
+    <img class="socialMediaSignIn animated flipInY" ng-click="callOauthProvider('/api/auth/twitter')" ng-src="/modules/users/client/img/buttons/twitter.png">
+    <img class="socialMediaSignIn animated flipInY" ng-click="callOauthProvider('/api/auth/google')" ng-src="/modules/users/client/img/buttons/google.png">
+     
     <img class="socialMediaSignIn animated flipInY" ng-click="callOauthProvider('/api/auth/facebook')" ng-src="/modules/users/client/img/buttons/facebook.png">
     <img class="socialMediaSignIn animated flipInY" ng-click="callOauthProvider('/api/auth/linkedin')" ng-src="/modules/users/client/img/buttons/linkedin.png">
 

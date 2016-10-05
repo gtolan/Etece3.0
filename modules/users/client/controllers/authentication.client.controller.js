@@ -18,9 +18,9 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
         var data = ({
           subject: 'Hi, ' + $scope.authentication.user.displayName + '! Welcome to Taskmatch.ie',
           contactName: $scope.authentication.user.displayName,
-          emailFrom: 'contact@taskmatch.ie',
+          emailFrom: 'contact@Etece.es',
           emailTo: $scope.authentication.user.email,
-          subject: 'Welcome to Taskmatch.ie!'
+          subject: 'Welcome to Etece.es!'
         });
         $http.post('/api/auth/welcome-email', data).success(
           function(data, status, headers, config) {

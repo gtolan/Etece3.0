@@ -38,7 +38,14 @@ module.exports = {
         'https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js',
         'public/lib/angular-material/angular-material.js',
         'https://maps.googleapis.com/maps/api/js?key=AIzaSyCDH-3Phrzi_Fogc5ku3AEslD8ShJfeIig&libraries=places,visualization,drawing,geometry',
-        'https://js.stripe.com/v2/'
+        'https://js.stripe.com/v2/',
+        'https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js',
+        'public/lib/angular-counter-master/js/angular-counter.js',
+        'public/lib/angular-counter-master/js/jquery.easing.min.js',
+        'public/lib/angular-counter-master/js/angular-counter-with-easing.min.js',
+        'public/lib/angular-counter-master/js/*.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.js',
+        'public/lib/angular-chart.js/angular-chart.min.js'
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']
     },

@@ -303,16 +303,58 @@ assigned:hover {
 /* transform: scale(0.8); */
 }
 
+
+
+
 /*filter transitions */
 .fiterbox.ng-hide-add {
-  -webkit-animation: .5s hide;
-  animation: .5s hide;
+    -webkit-animation-name: fadeInDown hide;
+  animation-name: fadeInDown hide;
+  -webkit-animation-duration: .7s ;
+  animation-duration: .7s ;
+ 
+}
+/*perfect example of slide toggle*/
+.filterbox.ng-hide-remove {
+    -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown ;
+  -webkit-animation-duration: .7s;
+  animation-duration: .7s;
+}
+.filterbox.ng-hide-add, .filterbox2.ng-hide-add {
+  -webkit-animation-name: fadeOutUp;
+  animation-name: fadeOutUp;
+  -webkit-animation-duration: .7s;
+  animation-duration: .7s;
 }
 
-.filterbox.ng-hide-remove {
-  -webkit-animation: .3s show;
-  animation: .3s show;
+.showBoxOne.ng-hide-add {
+    -webkit-animation-name: slideOutRight ;
+  animation-name: slideOutRight;
+  -webkit-animation-duration: 1.5s ;
+  animation-duration: 1.5s ;
 }
+.showBoxOne.ng-hide-remove {
+    -webkit-animation-name: slideInRight;
+  animation-name: slideInRight;
+  -webkit-animation-duration: 1.5s ;
+  animation-duration: 1.5s ;
+}
+.showmeMapView.ng-hide-add {
+    -webkit-animation-name: zoomOutDown ;
+  animation-name: zoomOutDown;
+  -webkit-animation-duration: 1.4s ;
+  animation-duration: 1.4s ;
+}
+.showmeMapView.ng-hide-remove {
+    -webkit-animation-name: zoomInUp;
+  animation-name: zoomInUp;
+  -webkit-animation-duration: 1.5s ;
+  animation-duration: 1.5s ;
+}
+
+/* End perfect example of slide toggle*/
+
 
 /*filter transitions */
 @keyframes fadeOutUp {
@@ -328,8 +370,8 @@ assigned:hover {
 }
 
 .fiterbox2.ng-hide-add {
-  -webkit-animation-name: fadeOutUp;
-  animation-name: fadeOutUp;
+  -webkit-animation-name: fadeOutUp hide;
+  animation-name: fadeOutUp hide;
 }
 
 .filterbox2.ng-hide-remove {
@@ -877,21 +919,21 @@ myNextButton:focus {
 }
 .myBackButton {
     cursor: pointer;
-  background: #ffffff;
-  background-image: -webkit-linear-gradient(top, #ffffff, #ffffff);
-  background-image: -moz-linear-gradient(top, #ffffff, #ffffff);
-  background-image: -ms-linear-gradient(top, #ffffff, #ffffff);
-  background-image: -o-linear-gradient(top, #ffffff, #ffffff);
-  background-image: linear-gradient(to bottom, #ffffff, #ffffff);
-  -webkit-border-radius: 28;
-  -moz-border-radius: 28;
-  border-radius: 28px;
-  font-family: Arial;
-  color: #8f8f8f;
-  font-size: 17px;
-  padding: 4px 12px 4px 12px;
-  border: solid #0b8fe0 2px;
-  text-decoration: none;
+    background: #ffffff;
+    background-image: -webkit-linear-gradient(top, #ffffff, #ffffff);
+    background-image: -moz-linear-gradient(top, #ffffff, #ffffff);
+    background-image: -ms-linear-gradient(top, #ffffff, #ffffff);
+    background-image: -o-linear-gradient(top, #ffffff, #ffffff);
+    background-image: linear-gradient(to bottom, #ffffff, #ffffff);
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    font-family: Arial;
+    color: #8f8f8f;
+    font-size: 15px;
+    padding: 4px 16px 8px 16px;
+    border: solid #0b8fe0 2px;
+    text-decoration: none;
 }
 
 .myBackButton:hover {
@@ -1502,7 +1544,7 @@ div.tile-box2:hover div.tile-overlay2 {
   line-height: 20px;
 }
 
-.progress {
+.progressTaskView {
   margin-bottom: 7px;
   height: .7em;
 }
@@ -1795,11 +1837,12 @@ position: absolute !important;
 }
 
 .publicProfilePic {
-  width: 10em;
-  height: 10em;
-  border-radius: 4em;
-  border: 5px solid #fff;
-  box-shadow: 0 0 0 1px #9c9c9c;
+    width: 10em;
+    height: 10em;
+    border-radius: 4em;
+    border: 5px solid #fff;
+    box-shadow: 0 0 0 1px #9c9c9c;
+    margin-top: 2em;
 }
 
 .tasksSummary h3 {
@@ -1936,7 +1979,7 @@ h1.mainDivTitlesHowWorks {
 }
 
 .offerInclude {
-  height: 280px;
+  height: auto;
   padding: 25px 4px 25px 4px;
 }
 

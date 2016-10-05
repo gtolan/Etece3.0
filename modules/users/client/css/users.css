@@ -64,6 +64,19 @@
     border-radius: 23px;
     background: #f1f1f6;
 }
+.skills-repeat {
+    list-style: none;
+    display: inline-block;
+    position: relative;
+    word-break: break-word;
+    border: 1px solid #9c9c9c;
+    margin: 0.1em;
+    padding: 0.3em;
+    border-radius: 3px;
+    background: #f1f1f6;
+    width: 100%;
+    text-align: left;
+}
 
 .skills-repeat-white {
     list-style: none;
@@ -278,3 +291,4 @@ hr {
 .editProfileSpan {
   color: #006DD3;
 }
+

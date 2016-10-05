@@ -1,14 +1,22 @@
 <section>
-  <div class="adminPage" style="">
-
-
     
     
     
+<div class="row text-center"><h2>
+    Admin Page</h2>
+    </div>    
     
     
-
-
+    
+    <div class="row barChartAdmin">
+       <canvas id="bar" class="chart chart-bar"
+  chart-data="data" chart-labels="labels"> chart-series="series"
+        </canvas> 
+    </div>
+          
+           
+           
+  <div class="adminPage">
     <md-tabs md-dynamic-height md-border-bottom>
      <md-tab label="KPIs">
         <md-content class="md-padding">
@@ -144,7 +152,7 @@
       </md-tab>
     </md-tabs>
  
-    
+     </div>
     
 <!--
   <div class="container">
@@ -169,5 +177,5 @@
   <pagination boundary-links="true" max-size="8" items-per-page="itemsPerPage" total-items="filterLength" ng-model="currentPage" ng-change="pageChanged()"></pagination>
 </div>
 -->
-    </div>
+   
 </section>

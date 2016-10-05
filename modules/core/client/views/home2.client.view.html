@@ -9,7 +9,9 @@
     
     <div class="row">
             <div class="row noPadding overlayVideo">
-                <video src="../modules/core/client/img/video/eteceBG.mp4" autoplay="true" poster="posteEteceVideo.png" autostart="" autobuffer="" preload="auto" loop="true" class="videoMainBG" muted="true" ></video>
+                <video src="../modules/core/client/img/video/eteceBG.mp4" autoplay="true" poster="../modules/core/client/img/posterEteceVideo.png" autostart="" autobuffer="" preload="auto" loop="true" class="videoMainBG" muted="true" ></video>
+               
+           <video src="../modules/core/client/img/video/eteceBGmobile.mp4" autoplay="true" poster="../modules/core/client/img/posterEteceVideo.png" autostart="" autobuffer="" preload="auto" loop="true" class="videoMainBGMobile" muted="true" ></video>     
             </div>
                     <div class="row">
                         <h1 class="mainTitleHeaderTextH">Tiempo para los que no <br> tienen tiempo</h1>
@@ -254,7 +256,7 @@ end of dialog material- task
                                   <div class="frame"><!-- frame-->
                                      <a class="categoryCenterText">
                                         <span class="caption">
-                                         <h3>Empleadas &amp;<br>del Hogar</h3>
+                                         <h3>Empleadas <br>del Hogar</h3>
                                            <p class="categoryCenterTextHidden">
                                             <ul>
                                                <li class="categListSubs">Limpiadora</li>
@@ -273,8 +275,8 @@ end of dialog material- task
                                   <div class="frame"><!-- frame-->
                                      <a class="categoryCenterText">
                                         <span class="caption">
-                                         <h3>Ikea &amp;<br>
-                                    Removals</h3>
+                                         <h3>Ikea <br>
+                                    </h3>
                                            <p class="categoryCenterTextHidden">
                                             <ul>
                                                <li class="categListSubs">Montaje de meubles</li>
@@ -312,7 +314,7 @@ end of dialog material- task
                                      <a class="categoryCenterText">
                                         <span class="caption">
                                          <h3>Reparaciones<br>
-                                    &amp; del Hogar</h3>
+                                    del Hogar</h3>
                                            <p class="categoryCenterTextHidden">
                                             <ul>
                                                <li class="categListSubs">Limpiador</li>
@@ -336,7 +338,7 @@ end of dialog material- task
                                   <div class="frame"><!-- frame-->
                                      <a class="categoryCenterText">
                                         <span class="caption">
-                                         <h3>Ayuda en &amp;<br>Oficina</h3>
+                                         <h3>Ayuda en <br>Oficina</h3>
                                            <p class="categoryCenterTextHidden">
                                             <ul>
                                                <li class="categListSubs">Limpieza de oficina</li>
@@ -387,12 +389,12 @@ end of dialog material- task
                                    <img class="catImg" src="../modules/core/client/img/category/Office.jpg">
                                 </a>
                             </div>
-                        </div>
+                        </div> 
                         <div class="col-xs-3 catwindow">
                                   <div class="frame"><!-- frame-->
                                      <a class="categoryCenterText">
                                         <span class="caption">
-                                         <h3>Fun<br>&amp; Quirky</h3>
+                                         <h3>Otros &amp;<br> favoritos</h3>
                                            <p class="categoryCenterTextHidden">
                                             <ul>
                                                <li class="categListSubs">Limpiador</li>
@@ -496,19 +498,104 @@ end of dialog material- task
 
     <div class="row counterSection">
     <div class="col-xs-12">  
-      <div class="col-xs-4 text-center">
+<!--
+     <ul>
+<li>
+        <legend>Auto-start</legend>
+        <p  counter
+            value="autoStartVar"
+            to="100"
+           duration="5000"
+            effect="'easeOutQuint'">
+          {{ autoStartVar | number:0 }}
+        </p>
+      </li>
+      
+      <li ng-init="manualStartTarget=0">
+        <legend>
+          <a  href="#"
+              class="pull-right small"
+              ng-click="manualStartTarget=100">
+            Start now!
+          </a>
+          Manual start
+        </legend>
+        <p  counter
+            value="manualStartVar"
+            to="manualStartTarget">
+          {{ manualStartVar | number:0 }}
+        </p>
+      </li>
+</ul>   
+
+-->
+        
+        <div class="col-sm-4 text-center">
+<div class="progressSprite">          
+<span class="circular-progress" title="0">
+</span>
+<span class="circular-progress" title="0">
+</span>
+<span class="circular-progress" title="0">
+</span>
+<span class="circular-progress" title="0">
+</span>
+<span class="circular-progress hide" title="0">
+</span>
+    </div>
         <div class="titleCounter text-center">Mas que</div>
-        <div class="number"><span class="count text-center counterAnimate" ani-scroll="2500">40.000</span></div>
+          
+        <div class="number counterAnimate" ani-scroll="2150">
+            <i class="fa fa-user-plus" aria-hidden="true"></i><br>
+            <span class="count" counter value="autoStartVar" to="40000"  duration="9000" effect="'easeOutQuint'" > {{ autoStartVar | number:0 }}</span> 
+             </div>
           <div class="counterFooter1 text-center">Usuarios satisfechos</div> 
-      </div>
-      <div class="col-xs-4 text-center">
+     
+        </div>
+        
+        
+      <div class="col-sm-4 text-center">
+          <div class="progressSprite">          
+<span class="circular-progress" title="0">
+</span>
+<span class="circular-progress" title="0">
+</span>
+<span class="circular-progress" title="0">
+</span>
+<span class="circular-progress" title="0">
+</span>
+<span class="circular-progress hide" title="0">
+</span>
+    </div>
           <div class="titleCounter text-center">Mas que</div>
-         <div class="number"><span class="count text-center counterAnimate" ani-scroll="2500">€2.405.007</span></div>
+        
+           <div class="number counterAnimate" ani-scroll="2150">
+           <i class="fa fa-bar-chart" aria-hidden="true"></i><br>
+            <span class="count" counter value="autoStartVar" to="2405007"  duration="12000" effect="'easeOutQuint'" > &euro; {{ autoStartVar | number:0 }}</span> 
+             </div>
           <div class="counterFooter3 text-center">Valor de puestos de trabajo creados</div>
       </div>
-      <div class="col-xs-4 text-center">
+        
+        
+        
+      <div class="col-sm-4 text-center">
+          <div class="progressSprite">          
+<span class="circular-progress" title="0">
+</span>
+<span class="circular-progress" title="0">
+</span>
+<span class="circular-progress" title="0">
+</span>
+<span class="circular-progress" title="0">
+</span>
+<span class="circular-progress hide" title="0">
+</span>
+    </div>
          <div class="titleCounter text-center">Mas que</div>
-         <div class="number"><span class="count text-center counterAnimate" ani-scroll="2500">€390.782</span></div>
+         <div class="number counterAnimate" ani-scroll="2150">
+           <i class="fa fa-pie-chart" aria-hidden="true"></i><br>
+            <span class="count text-center" counter value="autoStartVar" to="390782"  duration="14000" effect="'easeOutQuint'" > &euro; {{ autoStartVar | number:0 }}</span> 
+             </div>
           <div class="counterFooter text-center">Valor de trabajo disponibles por mes</div>
       </div>
     </div>
@@ -600,53 +687,90 @@ end of dialog material- task
 
 
 
-<div class="row signUpRepair">
-    <div class="container-fluid noPadding">
-    <div class="col-md-3 socialSignButtonsRepairCont ">
-    <div class="col-xs-12">    
-    <md-button class="md-raised md-primary socialSingBut"><i class="fa fa-facebook" aria-hidden="true"></i> Facebook</md-button>
-     <md-button class="md-raised md-warn socialSingBut"><i class="fa fa-google-plus" aria-hidden="true"></i> Google</md-button>
-    </div>    
-    <div class="col-xs-12">    
-    <md-button class="md-raised md-primary socialSingBut"><i class="fa fa-linkedin" aria-hidden="true"></i> LinkedIn</md-button>
-    <md-button class="md-raised md-warn socialSingBut"><i class="fa fa-twitter" aria-hidden="true"></i> Twitter</md-button>
-        </div> 
-      <div class="col-xs-12">
-        <h3 class="socialMediaSignUpTitle">Registrar con social media</h3>
-        </div>  
-    </div>
-    <div class="col-md-6 col-md-10 panelSubmitApplication">
-        <h4 class="titleSignUpSubmit">Registrar con su Email</h4>
-         <md-input-container class="md-block" flex-gt-sm="">
-            <label>First name</label>
-            <input ng-model="user.firstName">
-          </md-input-container>
-        <md-input-container class="md-block" flex-gt-sm="">
-            <label>Apellido</label>
-            <input ng-model="user.firstName">
-          </md-input-container>
-        <md-input-container class="md-block" flex-gt-sm="">
-            <label>Email</label>
-            <input ng-model="user.firstName">
-          </md-input-container>
-        <md-input-container class="md-block" flex-gt-sm="">
-            <label>Usario</label>
-            <input ng-model="user.firstName">
-          </md-input-container>
-        <md-input-container class="md-block" flex-gt-sm="">
-            <label>Password</label>
-            <input ng-model="user.firstName">
-          </md-input-container>
-        <md-input-container class="md-block" flex-gt-sm="">
-            <label>Teléfono móvil</label>
-            <input ng-model="user.firstName">
-          </md-input-container>
-        <md-button class="md-raised signUpBut">Registrar</md-button>
-   
-    </div>
+<div class="row" ng-controller="AuthenticationController" >
+    
+
+    <div class="row noPadding signUpRepeairCo">
+            <div class="col-md-3 socialSignButtonsRepair ">
+                <div class="col-xs-12">    
+                <md-button class="md-raised md-primary socialSingBut"><i class="fa fa-facebook" aria-hidden="true"></i> Facebook</md-button>
+                 <md-button class="md-raised md-warn socialSingBut"><i class="fa fa-google-plus" aria-hidden="true"></i> Google</md-button>
+                </div>    
+                <div class="col-xs-12">    
+                <md-button class="md-raised md-primary socialSingBut"><i class="fa fa-linkedin" aria-hidden="true"></i> LinkedIn</md-button>
+                <md-button class="md-raised md-warn socialSingBut"><i class="fa fa-twitter" aria-hidden="true"></i> Twitter</md-button>
+                    </div> 
+            </div>
+        
+        
+        
+    <div class="col-md-9 panelSubmitAppl">
+        <form name="userForm" ng-submit="signup(userForm.$valid)" class="" novalidate autocomplete="off">
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label class="formRegLabelHome" for="firstName formRegHome">First Name</label>
+          <input type="text" id="firstName" name="firstName" class="form-control formRegInputHome" ng-model="credentials.firstName" placeholder="First Name" required>
+          <div ng-messages="userForm.firstName.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">First name is required.</p>
+          </div>
+        </div>
+        <div class="form-group formRegHome" show-errors>
+          <label class="formRegLabelHome" for="lastName">Last Name</label>
+          <input type="text" id="lastName" name="lastName" class="form-control formRegInputHome" ng-model="credentials.lastName" placeholder="Last Name" required>
+          <div ng-messages="userForm.lastName.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Last name is required.</p>
+          </div>
+        </div>
+        <div class="form-group formRegHome" show-errors>
+          <label class="formRegLabelHome" for="email">Email</label>
+          <input type="email" id="email" name="email" class="form-control formRegInputHome" ng-model="credentials.email" placeholder="Email" lowercase required>
+          <div ng-messages="userForm.email.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Email address is required.</p>
+            <p class="help-block error-text" ng-message="email">Email address is invalid.</p>
+          </div>
+        </div>
+        <div class="form-group formRegHome" show-errors>
+          <label class="formRegLabelHome" for="username">Username</label>
+          <input type="text" id="username" name="username" class="form-control formRegInputHome" ng-model="credentials.username" placeholder="Username" lowercase required>
+          <div ng-messages="userForm.username.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Username is required.</p>
+          </div>
+        </div>
+        <div class="form-group formRegHome" show-errors>
+          <label class="formRegLabelHome" for="password">Password</label>
+            <input type="password" id="password" name="password" class="form-control formRegInputHome" ng-model="credentials.password" placeholder="Password" popover="{{popoverMsg}}" popover-trigger="focus" password-validator required>
+          <div ng-messages="userForm.password.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Password is required.</p>
+            <div ng-repeat="passwordError in passwordErrors">
+              <p class="help-block error-text" ng-show="userForm.password.$error.requirements">{{passwordError}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="form-group formRegHome" ng-show="!userForm.password.$error.required">
+          <label class="formRegLabelHome">Password Requirements</label>
+          <progressbar value="requirementsProgress" type="{{requirementsColor}}"><span style="color:white; white-space:nowrap;">{{requirementsProgress}}%</span></progressbar>
+        </div>
+        <div class="text-center form-group formRegHome">
+          <button type="submit" class="btn btn-primary">Sign up</button>
+          &nbsp; or&nbsp;
+          <a ui-sref="authentication.signin" class="show-signup">Sign in</a>
+        </div>
+        <div ng-show="error" class="text-center text-danger">
+          <strong ng-bind="error"></strong>
+        </div>
+      </fieldset>
+    </form>  
+  </div>
  </div>
 </div>
-    
+       <div id="slider">
+        <figure>
+            <img src="modules/core/client/img/toolsEtece.png" alt="An Etece sign up Image Background">
+            <img src="modules/core/client/img/cleaningNewEtece.png" alt="Etece registrar con Etece">
+            <img src="modules/core/client/img/fontaneroEtece.png" alt="Etece fontanero Plumber">
+        </figure>
+     </div>
+
 <!--========SECTION-END========-->  
 
 <div class="row hiddenHeader" ani-scroll="1550">

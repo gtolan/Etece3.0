@@ -3872,6 +3872,27 @@
   animation-name: tada;
 }
 
+.badgeOneProfile {
+  -webkit-animation-name: tada;
+  animation-name: tada;
+    animation-delay: 1.5s;
+    animation-duration: 2s;
+    animation-iteration-count: 3;
+}
+.badgeTwoProfile {
+  -webkit-animation-name: swing;
+  animation-name: swing;
+    animation-delay: 2.9s;
+    animation-duration: 2.5s;
+    animation-iteration-count: 3;
+}
+.badgeThreeProfile {
+  -webkit-animation-name: tada;
+  animation-name: tada;
+    animation-delay: 4.3s;
+    animation-duration: 2s;
+}
+
 
 
 

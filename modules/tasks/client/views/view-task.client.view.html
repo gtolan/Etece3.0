@@ -1,5 +1,5 @@
 <section>
-  <div class="well taskView showme" ng-hide="showme">
+  <div class="well taskView showmeMapView" ng-hide="showmeMapView">
     <div class="col-sm-12 noPadding">
         <div class="container-fluid noPadding postedByContainer">
           <img alt="" data-ui-sref="profile({ userId : vm.task.user._id })" class="taskProfileImg" src="{{ vm.task.profileImageURL }}" onerror="if (this.src != 'default.png') this.src = '../modules/users/client/img/profile/default.png';">
@@ -25,7 +25,7 @@
                 "bottom"></i>
           </div>
         <h1 class="pull-right">
-        <button type="button" class="close TaskViewClose" aria-label="Close" ng-click="showme=true">&times;</button>
+        <button type="button" class="close TaskViewClose" aria-label="Close" ng-click="showmeMapView=true">&times;</button>
       </h1>
     </div>
     <!-- close col-sm-12 -->
@@ -40,7 +40,7 @@
           <hr>
             <div class="col-sm-8 col-sm-12 noPadding">
               <!--        <img src="{{vm.task.profileImageURL}}">-->
-              <div class="progress">
+              <div class="progress progressTaskView">
                 <div tooltip-placement="left" tooltip="This task is open to receive offers." class="progress-bar progress-bar-success" role="progressbar" style="width:33.3%" ng-show="vm.task.statusOpen"></div>
                 <div class="progress-bar progress-bar-warning" role="progressbar" tooltip-placement="right" tooltip="This task has been assigned to a user." style="width:33.3%" ng-show="vm.task.statusAssigned"></div>
                 <div class="progress-bar progress-bar-danger" role="progressbar" tooltip-placement="right" tooltip="This task has been assigned and completed already!" style="width:33.3%" ng-show="vm.task.statusClosed"></div>
@@ -107,7 +107,7 @@
                 <div class="col-sm-4 col-sm-12">
                   <div class="panel panel-default task-price">
                     <div class="paidWithTask text-center">Será pagado con Etece Pay 
-                      <span class="glyphicon glyphicon-question-sign" tooltip-placement="left" tooltip="When an offer is accepted the job posters funds for the task are securely held within a TaskMatch trust account until the task is completed"></span>
+                      <span class="glyphicon glyphicon-question-sign" tooltip-placement="left" tooltip="When an offer is accepted the job posters funds for the task are securely held within a Etece trust account until the task is completed"></span>
                     </div>
                     <div class="panel-body noPadding">
                       <h1 class="text-center PriceTask">
@@ -118,7 +118,11 @@
                       <div ng-controller="ModalOfferCtrl">
                         <script id="myOfferModalContent.html" type="text/ng-template">
                           <div class="modal-header">
-                            <h3 class="modal-title text-center" style="text-align:center;color:#265a88;">Hacer una oferta</h3>
+                          <div class="row">  <h3 class="modal-title text-center" style="text-align:center;color:#265a88;display:inline-block;padding-left:35%;">Hacer una oferta </h3>
+                         <button aria-hidden="true" class="close pull-right" ng-click="cancel()" type=
+    "button" style="font-size:33px;">&times;</button> 
+                              </div>
+                              
                           </div>
                           <div ng-include="'/modules/tasks/client/views/offer.client.view.html'" class="offerInclude"></div>
                           <div class="modal-footer offerFooter">
@@ -135,14 +139,26 @@
                     </div>
                   </div>
                   <div ng-if="!vm.task.isCurrentUserOwner">
-                    <div class="col-xs-12 noPadding">
-                      <div class="btn-group text-center pull-left" dropdown is-open="status.isopen">
-                        <button id="single-button" tooltip-placement="left" tooltip="Click to view more options related to this task." type="button" class="attach-file eteceButton hvr-underline-reveal" dropdown-toggle ng-disabled="disabled">
-                Más opciones
-                          <i class="glyphicon glyphicon-chevron-down"></i>
-                        </span>
-                      </button>
-                      <ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
+                    <div class="row noPadding">
+<div class="col-xs-12 noPadding">
+                        
+                        
+                        
+                           <div class="btn-group pull-right"  dropdown>
+      <button id="split-button" type="button" class="btn btn-primary eteceButton hvr-underline-reveal butCollapseMap" tooltip-placement="left" tooltip="Click this button to toggle view of the task map." 
+                    ng-hide="vm.task.isCurrentUserOwner" 
+                    ng-click="vm.locationCollapsed = !vm.locationCollapsed">
+                    <i class="glyphicon glyphicon-map-marker"></i></button>
+                               
+                        
+                    
+                               
+                               
+      <button type="button"  tooltip-placement="top" tooltip="Click to view more options related to this task." class="btn btn-primary eteceButton hvr-underline-reveal " dropdown-toggle ng-disabled="disabled" dropdown-toggle>
+        Más opciones
+          <span class="caret"></span>
+      </button>
+       <ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
                         <li role="menuitem">
                           <a ng-click="app.open()">
                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Post a similar task
@@ -163,7 +179,15 @@
                         <li class="divider"></li>
                         <!--                 <li role="menuitem"><a href="#"><i class="fa fa-plus-square-o" aria-hidden="true"></i> Follow task</a></li><li role="menuitem"><a href="#"><i class="fa fa-flag" aria-hidden="true"></i> Report</a></li><li role="menuitem"><a href="#"><i class="fa fa-bell-o" aria-hidden="true"></i> Set up Alerts</a></li>   -->
                       </ul>
-                    </div>
+    </div>
+                        </div>                    
+                        
+                     
+                    
+                    
+    <!--                        </div> ---->
+<!--                      <div class="col-xs-3 noPadding">-->
+<!--
                     <button 
                     class="attach-file pull-right eteceButton hvr-underline-reveal" 
                     tooltip-placement="left" 
@@ -172,7 +196,12 @@
                     ng-click="vm.locationCollapsed = !vm.locationCollapsed">
                     <i class="glyphicon glyphicon-map-marker"></i>
                     </button>
+-->
+                    </div>
+<!--
                   </div>
+                      </div>
+-->
                   <small class="pull-left" ng-show="vm.task.user.additionalProvidersData.facebook && friendsofFriends || vm.task.user.provider === "facebook" && friendsofFriends">
                     <img style="height:20px;width:20px;" src="modules/users/client/img/profile/1468796969_all_friends.png"/>
             You and {{ vm.task.user.displayName }} have {{ friendsofFriendsLength }} mutual friend(s)

@@ -1,8 +1,18 @@
 'use strict';
 
-angular.module('users.admin').controller('UserListController', ['$scope', '$filter', 'Admin',
+angular.module('users.admin').controller('UserListController', ['$scope', '$filter', 'Admin', 
   function($scope, $filter, Admin) {
 
+      
+      
+    $scope.labels = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre'];
+  $scope.series = ['Series A', 'Series B'];
+
+  $scope.data = [
+    [65, 59, 80, 81, 56, 55, 40, 70, 68],
+    [28, 48, 40, 19, 86, 27, 90, 95, 92]
+  ];
+      
     (function(w, d, s, g, js, fs) {
       g = w.gapi || (w.gapi = {});
       g.analytics = {
@@ -155,6 +165,7 @@ angular.module('users.admin').controller('UserListController', ['$scope', '$filt
       });
 
     });
+      
 
     Admin.query(function(data) {
       $scope.users = data;
@@ -182,4 +193,6 @@ angular.module('users.admin').controller('UserListController', ['$scope', '$filt
       $scope.figureOutItemsToDisplay();
     };
   }
+                                                    
+ 
 ]);

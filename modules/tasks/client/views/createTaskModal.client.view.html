@@ -1,9 +1,12 @@
 <div ng-controller="ModalTaskCtrl as app">
   <div class="modal-header">
-    <button aria-hidden="true" class="close" ng-click=
-    "cancel('You cancelled your task, please try again!')" type=
-    "button">&times;</button>
-    <h3 style="text-align:center;color:#265a88;">Encargar tarea - Tu tarea</h3>
+     <div class="col-xs-offset-1 col-xs-10 noPadding">
+           <h3 class="modal-title text-center modalTitle" style="color:#265a88;">Encargar tarea - Tu tarea</h3>
+            </div>
+            <div class="col-xs-1 noPadding">
+            <button aria-hidden="true" class="close pull-right" ng-click="cancel()" type=
+    "button" style="font-size:33px;">&times;</button>
+            </div>
   </div>
   <!--   ng-submit="vm.save(vm.form.taskForm.$valid)" -->
   <div class="modal-body">
@@ -115,7 +118,7 @@ su título es demasiado corto
               <!--==      <fieldset> ==-->
               <div class="col-xs-6 noPadding">
                 <div class="form-group">
-                  <label class="control-label" for="taskLocation">Ubicación <span aria-hidden="true" class=
+                  <label class="control-label" for="taskLocation">Dirección <span aria-hidden="true" class=
                     "glyphicon glyphicon-question-sign" tooltip=
               "Introduce aquí la dirección (el sistema mostrará la lista de coincidencias automáticamente). Selecciona la opción correcta de entre las sugerencias"
               tooltip-placement="right"></span>
@@ -125,7 +128,7 @@ su título es demasiado corto
         component-restrictions="{country:'es'}" id="taskLocation" name=
         "taskLocation" ng-model="vm.task.taskLocation" on-place-changed=
         "vm.placeChanged()" places-auto-complete="" required="" size="80" type=
-        "text" types="{{types}}">
+        "text" types="{{types}}" placeholder="calle, número y ciudad">
                       <div ng-messages="vm.form.taskForm.taskLocation.$error" role="alert">
                         <p class="help-block error-text" ng-message="required">Task location
                     is required.</p>
@@ -189,17 +192,18 @@ su título es demasiado corto
                 <div class="col-xs-6 noPadding">
                   <div class="form-group">
                     <label class="control-label">Categories</label><br>
-                  <!-- onlineTask -->
-                  <div class="btn-group " dropdown="">
-                    <div class="btn-group catButDropd" dropdown="" dropdown-append-to-body="">
-                      <button class="btn splitCategBt" dropdown-toggle=
-                  "" id="btn-append-to-body" type="button">Category
-                  
-<!--                         <span class="caret specCaret"></span> -->
-                      </button>
-                      <ul aria-labelledby="split-button" class=
-                  "dropdown-menu categDropD" role="menu">
-                        <li role="menuitem">
+                      
+                      
+                       <div class="btn-group btn-block" dropdown>
+      <button id="button-template-url" type="button" class="btn btn-primary btn-block btnCategory" dropdown-toggle ng-disabled="disabled">
+       Categories <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" template-url="dropdownCateg.html" aria-labelledby="button-template-url">
+      </ul>
+    </div>
+    <script type="text/ng-template" id="dropdownCateg.html">
+        <ul class="dropdown-menu" role="menu" aria-labelledby="button-template-url">
+                              <li role="menuitem">
                           <label class="btn skills-repeat" ng-model=
                       "vm.task.cleaning" btn-checkbox>
                             <i class="fa fa-home" aria-hidden="true"></i> Home &amp; Cleaning
@@ -246,30 +250,34 @@ su título es demasiado corto
                             <i class="fa fa-cogs" aria-hidden="true"></i> Misc.
                           </label>
                         </li>
-                      </ul>
-                    </div>
+        </ul>
+    </script>
                   </div>
-                </div>
-              </div>
+                  </div>       
+                      
+                      
+                  <!-- onlineTask -->
+<!--
+                  <div class="btn-group " dropdown="">
+                    <div class="btn-group catButDropd" dropdown="" dropdown-append-to-body="">
+                      <button class="btn splitCategBt" dropdown-toggle=
+                  "" id="btn-append-to-body" type="button">Category
+                  
+
+                      </button>
+                      <ul aria-labelledby="split-button" class=
+                  "dropdown-menu categDropD" role="menu">
+
+                      
+                      </ul>
+-->
+                 
+           
                     
-                    
-         <div class="col-xs-6 noPadding">
-                  <div class="form-group">
-                    <label class="control-label">To be completed</label>
-                    <br>
-                      <label ng-disabled="vm.task.inPersonTask" class="btn skills-repeat-white" ng-model="vm.task.onlineTask" btn-checkbox>
-                        <i class="fa fa-laptop" aria-hidden="true"></i> Online task
-                      </label>
-                      <label ng-disabled="vm.task.onlineTask" class="btn skills-repeat-white" ng-model="vm.task.inPersonTask"btn-checkbox>
-                        <i class="fa fa-user" aria-hidden="true"></i> In person task
-                      </label>
-                    </div>
-                  </div>            
-                    
-                    
-              </div>
+                            
+            
                
-                  <div class="col-xs-6 noPadding" style="overflow: scroll;">
+                  <div class="col-xs-6 noPadding " style="overflow: scroll;">
                     <label class="control-label">Summary</label><br>
                     <!-- cleaning -->
                     <li ng-show="vm.task.cleaning" class="skills-non-repeat task-view"><i class="fa fa-home" aria-hidden="true"></i> Home &amp; Cleaning</li>
@@ -290,13 +298,30 @@ su título es demasiado corto
                     <!-- misc -->
                     <li ng-show="vm.task.misc" class="skills-non-repeat task-view"><i class="fa fa-cogs" aria-hidden="true"></i> Misc.</li>
                   </div>
+          </div>            
+                    
+                    
+                    
                 </div>
                 <div class="wave" ng-switch-when="three">
                   <div class="form-group">
                     <div class="row">
                       <div class="col-xs-6 leftFinalTaskSide">
-                        <h3>Thank you!
-                        </h4>
+                        <h3>Muchas Gracias!
+                        </h3>
+                          
+                <div class="col-xs-12 noPadding">
+                  <div class="form-group">
+                    <label class="control-label">Completado por:</label>
+                    <br>
+                      <label ng-disabled="vm.task.inPersonTask" class="btn skills-repeat-white" ng-model="vm.task.onlineTask" btn-checkbox>
+                        <i class="fa fa-laptop" aria-hidden="true"></i> Online task
+                      </label>
+                      <label ng-disabled="vm.task.onlineTask" class="btn skills-repeat-white" ng-model="vm.task.inPersonTask"btn-checkbox>
+                        <i class="fa fa-user" aria-hidden="true"></i> Tarea presencia
+                      </label>
+                    </div>
+                  </div>   
                         <div class="form-group">
                           <label class="control-label" for="taskPrice">Task Price
                     
@@ -318,7 +343,7 @@ su título es demasiado corto
                             </div>
                           </div>
                         </div>
-                        <div class="col-xs-6">
+                        <div class="col-xs-6 summary">
                           <p class="hideSmall">
                             <strong>Task Title:</strong> {{vm.task.title | limitTo: 15 }}{{ vm.task.title.length > 16 ? '...' : ''}}
                           </p>
@@ -331,7 +356,7 @@ su título es demasiado corto
                           <p>
                             <strong>Category:</strong>
                           </p>
-                          <li ng-show="vm.task.inPersonTask" class="skills-non-repeat task-view">In person task</li>
+                          <li ng-show="vm.task.inPersonTask" class="skills-non-repeat task-view">Tarea presencia</li>
                           <!-- cleaning -->
                           <li ng-show="vm.task.cleaning" class="skills-non-repeat task-view">Cleaning task</li>
                           <!-- onlineIT -->
@@ -350,9 +375,11 @@ su título es demasiado corto
                           <li ng-show="vm.task.moving" class="skills-non-repeat task-view">Moving task</li>
                           <!-- misc -->
                           <li ng-show="vm.task.misc" class="skills-non-repeat task-view">Misc. task</li>
+<!--
                           <p>
                             <strong>How many workers:</strong>{{vm.task.workerQty}}
                           </p>
+-->
                           <p>
                             <strong>Due Date:</strong>{{vm.task.dueDate | date:'fullDate'}}
                           </p>
@@ -370,9 +397,9 @@ su título es demasiado corto
           </div>
           <div class="modal-footer">
             <div class="form-group"></div>
-            <a class="myBackButton" ng-click="vm.handlePrevious()" ng-show=
+            <a class="myBackButton modalCreate" ng-click="vm.handlePrevious()" ng-show=
     "!vm.isFirstStep()">Back</a>
-            <button type="submit" ng-disabled="vm.form.taskForm.taskTitle.$untouched || vm.form.taskForm.taskTitle.$touched && vm.form.taskForm.taskTitle.$invalid || vm.form.taskForm.taskDescription.$touched && vm.form.taskForm.taskDescription.$invalid" class="myEteceReuseButton hvr-underline-reveal" ng-click=
+            <button type="submit" ng-disabled="vm.form.taskForm.taskTitle.$untouched || vm.form.taskForm.taskTitle.$touched && vm.form.taskForm.taskTitle.$invalid || vm.form.taskForm.taskDescription.$touched && vm.form.taskForm.taskDescription.$invalid" class="myEteceReuseButton modalCreate hvr-underline-reveal" ng-click=
     "vm.handleNext()">{{vm.getNextLabel()}}</button>
           </div>
         </div><!-- 

@@ -4,7 +4,7 @@
 var ApplicationConfiguration = (function () {
   // Init module configuration options
   var applicationModuleName = 'mean';
-  var applicationModuleVendorDependencies = ['ngResource', 'ngAnimate', 'ngMessages', 'ngMap', 'ngMaterial', 'angularPayments', 'ngTagsInput', 'ui.router', 'ui.bootstrap', 'ui.utils', 'angularFileUpload', 'angular-scroll-animate'];
+  var applicationModuleVendorDependencies = ['ngResource', 'ngAnimate', 'ngMessages', 'ngMap', 'ngMaterial', 'angularPayments', 'ngTagsInput', 'ui.router', 'ui.bootstrap', 'ui.utils', 'angularFileUpload', 'angular-scroll-animate', 'counter', 'chart.js'];
 
   // Add a new vertical module
   var registerModule = function (moduleName, dependencies) {
@@ -527,6 +527,8 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
     $scope.authentication = Authentication;
       $scope.footerCollapsedRowOne = true;
       $scope.footerCollapsedRowTwo = true;
+      $scope.footerCollapsedRowThree = true;
+      $scope.footerCollapsedRowFour = true;
       
     $scope.source =  '../modules/core/client/img/BGdark.png';
     /* New User FAQ End */
@@ -849,7 +851,38 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
                 });           
             }
         };
-    });
+    }).directive('countUp', ['$compile',function($compile,$timeout) {
+    return {
+        restrict: 'E',
+        replace: false,
+        scope: {
+            countTo: "=countTo",
+            interval: '=interval'
+        },
+        controller: ['$scope', '$element', '$attrs', '$timeout', function ($scope, $element, $attrs, $timeout) {
+            $scope.millis =0;
+            if ($element.html().trim().length === 0) {
+                $element.append($compile('<span>{{millis / 1000}}</span>')($scope));
+            } else {
+                $element.append($compile($element.contents())($scope));
+            }
+
+            var i=0;
+            function timeloop () {
+                setTimeout(function () {
+                    $scope.millis++;
+                    $scope.$digest();
+                    i++;
+                    if (i<$scope.countTo) {
+                        timeloop();
+                    }
+                }, $scope.interval)
+            }
+            timeloop();
+        }]
+    }}]);
+
+
 
 'use strict';
 angular.module('core').controller('ModalLoginCtrl', ['$scope', '$state',
@@ -3146,7 +3179,7 @@ angular.module('users').config(['$stateProvider',
 ]);
 'use strict';
 
-angular.module('users.admin').controller('UserListController', ['$scope', '$filter', 'Admin',
+angular.module('users.admin').controller('UserListController', ['$scope', '$filter', 'Admin', 'chart.js',
   function($scope, $filter, Admin) {
 
     (function(w, d, s, g, js, fs) {
@@ -3301,7 +3334,35 @@ angular.module('users.admin').controller('UserListController', ['$scope', '$filt
       });
 
     });
-
+      
+    $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
+  $scope.series = ['Series A', 'Series B'];
+  $scope.data = [
+    [65, 59, 80, 81, 56, 55, 40],
+    [28, 48, 40, 19, 86, 27, 90]
+  ];
+  $scope.onClick = function (points, evt) {
+    console.log(points, evt);
+  };
+  $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-2' }];
+  $scope.options = {
+    scales: {
+      yAxes: [
+        {
+          id: 'y-axis-1',
+          type: 'linear',
+          display: true,
+          position: 'left'
+        },
+        {
+          id: 'y-axis-2',
+          type: 'linear',
+          display: true,
+          position: 'right'
+        }
+      ]
+    }
+  };
     Admin.query(function(data) {
       $scope.users = data;
       $scope.buildPager();
@@ -3328,6 +3389,8 @@ angular.module('users.admin').controller('UserListController', ['$scope', '$filt
       $scope.figureOutItemsToDisplay();
     };
   }
+                                                    
+ 
 ]);
 'use strict';
 
@@ -3390,9 +3453,9 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
         var data = ({
           subject: 'Hi, ' + $scope.authentication.user.displayName + '! Welcome to Taskmatch.ie',
           contactName: $scope.authentication.user.displayName,
-          emailFrom: 'contact@taskmatch.ie',
+          emailFrom: 'contact@Etece.es',
           emailTo: $scope.authentication.user.email,
-          subject: 'Welcome to Taskmatch.ie!'
+          subject: 'Welcome to Etece.es!'
         });
         $http.post('/api/auth/welcome-email', data).success(
           function(data, status, headers, config) {

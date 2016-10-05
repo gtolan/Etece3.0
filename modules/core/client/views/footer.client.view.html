@@ -16,7 +16,7 @@
     <ul class="footItemMobile">
       <li style="list-style: none; display: inline text-align:left;">
       </li>
-      <li class="" ui-sref="home2">Home</li>
+      <li class="workingLink" ui-sref="home2">Home</li>
       <li class="linkNotBuilt" ui-sref="howsWorkingNO">How it works</li>
       <li class="linkNotBuilt" ui-sref="earnWithUsNO">Trabaja con nosotros</li>
       <li class="linkNotBuilt" ui-sref="termsNO">Información legal</li>
@@ -24,19 +24,19 @@
       <li class="linkNotBuilt" ui-sref="marketplaceNO">Reglas del mercado</li>
     </ul></div>
 	</div>
-<button type="button" class="btn btn-default btn-block btn-Footer" ng-click="footerCollapsedRowTwo = !footerCollapsedRowTwo"><h3 class="">Members <i class="fa fa-plus pull-right" aria-hidden="true"></i></h3></button>
+<button type="button" class="btn btn-default btn-block btn-Footer" ng-click="footerCollapsedRowTwo = !footerCollapsedRowTwo"><h3 class="">Miembros <i class="fa fa-plus pull-right" aria-hidden="true"></i></h3></button>
 	<div collapse="footerCollapsedRowTwo">
 		<div class="well well-lg footerWellButton" style="background:#3a3d3e;">
     <ul class="text-center">
       <li class="" style="list-style: none; display: inline">
       </li>
-      <li class="" ui-sref="tasks.create">Encargar Tarea</li>
-      <li  class="" ui-sref="tasks.list">Buscar Tareas</li>
-      <li class="" ui-sref="contact">Contáctanos</li>
+      <li class="workingLink" ui-sref="tasks.create">Encargar Tarea</li>
+      <li  class="workingLink" ui-sref="tasks.list">Buscar Tareas</li>
+      <li class="workingLink" ui-sref="contact">Contáctanos</li>
       <li class="linkNotBuilt" ui-sref="articles.listNO">Blog</li>
     </ul></div>
 	</div>
-<button type="button" class="btn btn-default btn-block btn-Footer" ng-click="footerCollapsedRowThree = !footerCollapsedRowThree"><h3 class="">Learn <i class="fa fa-plus pull-right" aria-hidden="true"></i></h3></button>
+<button type="button" class="btn btn-default btn-block btn-Footer" ng-click="footerCollapsedRowThree = !footerCollapsedRowThree"><h3 class="">Aprende<i class="fa fa-plus pull-right" aria-hidden="true"></i></h3></button>
 	<div collapse="footerCollapsedRowThree">
 		<div class="well well-lg footerWellButton" style="background:#3a3d3e;">
     <ul >
@@ -52,28 +52,24 @@
     </ul></div>
 	</div>
   
-      <button type="button" class="btn btn-default btn-block btn-Footer" ng-click="footerCollapsedRowFour = !footerCollapsedRowFour"><h3 class="">Categories <i class="fa fa-plus pull-right" aria-hidden="true"></i></h3></button>
+      <button type="button" class="btn btn-default btn-block btn-Footer" ng-click="footerCollapsedRowFour = !footerCollapsedRowFour"><h3 class="">Categorías <i class="fa fa-plus pull-right" aria-hidden="true"></i></h3></button>
 	<div collapse="footerCollapsedRowFour">
 		<div class="well well-lg footerWellButton" style="background:#3a3d3e;">
     <ul>
       <li class="" style="list-style: none; display: inline">
       </li>
          </li>
-      <li class="" ui-sref="tasks.list({ myFilter : { cleaning: true } })">Cleaning</li>
-      <li class="" ui-sref="tasks.list({ myFilter : { moving: true } })">Delivery</li>
-      <li class="" ui-sref="tasks.list({ myFilter : { DIY: true } })">Handyman</li>
-      <li class="" ui-sref="tasks.list({ myFilter : { marketing: true } })">Marketing</li>
-      <li class="" ui-sref="tasks.list({ myFilter : { photoEvents: true } })">Events</li>
-      <li class="" ui-sref="tasks.list({ myFilter : { onlineIT: true } })">IT</li>
-      <li class="" ui-sref="tasks.list({ myFilter : { office: true } })">Admin</li>
-      <li class="" ui-sref="tasks.list({ myFilter : { funQuirky: true } })">Quirky</li>
-      <li class="" ui-sref="tasks.list({ myFilter : { misc: true } })">Other</li>
+      <li class="linkNotBuilt" ui-sref="tasks.list({ myFilter : { cleaning: true } })">Empleadas del Hogar</li>
+      <li class="linkNotBuilt" ui-sref="tasks.list({ myFilter : { moving: true } })">Mundanzas &amp; Portes</li>
+      <li class="linkNotBuilt" ui-sref="tasks.list({ myFilter : { DIY: true } })">Reparaciones del Hogar</li>
+      <li class="linkNotBuilt" ui-sref="tasks.list({ myFilter : { marketing: true } })">Ikea</li>
+      <li class="linkNotBuilt" ui-sref="tasks.list({ myFilter : { photoEvents: true } })">Eventos</li>
+      <li class="linkNotBuilt" ui-sref="tasks.list({ myFilter : { onlineIT: true } })">Ayuda en Oficina</li>
+      <li class="linkNotBuilt" ui-sref="tasks.list({ myFilter : { office: true } })">Expertos</li>
+<!--      <li class="" ui-sref="tasks.list({ myFilter : { funQuirky: true } })">Quirky</li>-->
+      <li class="linkNotBuilt"ui-sref="tasks.list({ myFilter : { misc: true } })">Otros &amp; favoritos</li>
     </ul></div>
 	</div>
-
-
-      
-
         
       </div>        
         
@@ -91,7 +87,7 @@
     </ul>
     <ul>
       <li class="footerItem" style="list-style: none; display: inline">
-        <h3 class="footer-headers">Members</h3>
+        <h3 class="footer-headers">Miembros</h3>
       </li>
       <li class="workingLink" ui-sref="tasks.create">Encargar Tarea</li>
       <li  class="workingLink" ui-sref="tasks.list">Buscar Tareas</li>
@@ -100,7 +96,7 @@
     </ul>
     <ul class="footer2">
       <li class="footerItem" style="list-style: none; display: inline">
-        <h3 class="footer-headers">Learn</h3>
+        <h3 class="footer-headers">Aprende</h3>
       </li>
       <li class="linkNotBuilt" ui-sref="newUserNO">Nuevo usuario FAQ</li>
       <li class="linkNotBuilt" ui-sref="priceGuideNO">Guía de precios</li>
@@ -111,18 +107,18 @@
     </ul>
     <ul class="footer2">
       <li class="footerItem">
-        <h3 class="footer-headers">Categories</h3>
+        <h3 class="footer-headers">Categorías</h3>
       </li>
-      <li class="footerItem" ui-sref="tasks.list({ myFilter : { cleaning: true } })">Cleaning</li>
-      <li class="footerItem" ui-sref="tasks.list({ myFilter : { moving: true } })">Delivery</li>
-      <li class="footerItem" ui-sref="tasks.list({ myFilter : { DIY: true } })">Handyman</li>
-      <li class="footerItem" ui-sref="tasks.list({ myFilter : { marketing: true } })">Marketing</li>
+      <li class="footerItem linkNotBuilt" ui-sref="tasks.list({ myFilter : { cleaning: true } })">Empleadas del Hogar</li>
+      <li class="footerItem linkNotBuilt" ui-sref="tasks.list({ myFilter : { moving: true } })">Mundanzas &amp; Portes</li>
+      <li class="footerItem linkNotBuilt" ui-sref="tasks.list({ myFilter : { DIY: true } })">Reparaciones del Hogar</li>
+      <li class="footerItem linkNotBuilt" ui-sref="tasks.list({ myFilter : { marketing: true } })">Ikea</li>
    
-      <li class="footerItem" ui-sref="tasks.list({ myFilter : { photoEvents: true } })">Events</li>
-      <li class="footerItem" ui-sref="tasks.list({ myFilter : { onlineIT: true } })">IT</li>
-      <li class="footerItem" ui-sref="tasks.list({ myFilter : { office: true } })">Admin</li>
-      <li class="footerItem" ui-sref="tasks.list({ myFilter : { funQuirky: true } })">Quirky</li>
-      <li class="footerItem" ui-sref="tasks.list({ myFilter : { misc: true } })">Other</li>
+      <li class="footerItem linkNotBuilt" ui-sref="tasks.list({ myFilter : { photoEvents: true } })">Eventos</li>
+      <li class="footerItem linkNotBuilt" ui-sref="tasks.list({ myFilter : { onlineIT: true } })">Ayuda en Oficina</li>
+      <li class="footerItem linkNotBuilt" ui-sref="tasks.list({ myFilter : { office: true } })">Expertos</li>
+<!--      <li class="footerItem" ui-sref="tasks.list({ myFilter : { funQuirky: true } })">Quirky</li>-->
+      <li class="footerItem linkNotBuilt" ui-sref="tasks.list({ myFilter : { misc: true } })">Otros &amp; favoritos</li>
     </ul>
       <hr class="footer-hr">
 </div>     
