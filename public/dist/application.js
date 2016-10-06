@@ -511,6 +511,15 @@ angular.module('core').controller('HeaderController', ['$scope', '$state', 'Auth
       $scope.isCollapsed = !$scope.isCollapsed;
     };
 
+    var loginOrTask = function() {
+      if($scope.authentication.user) {
+        console.log('logged in');
+      }
+      else if (!$scope.authentication.user) {
+        console.log('not logged in');
+      }
+    };
+
     // Collapsing the menu after navigation
     $scope.$on('$stateChangeSuccess', function () {
       $scope.isCollapsed = false;
@@ -890,6 +899,24 @@ angular.module('core').controller('ModalLoginCtrl', ['$scope', '$state',
   function($scope, $state, Authentication, Menus, $modal, $log) {
     $scope.items = ['item1', 'item2', 'item3'];
     $scope.open = function(size) {
+      var modalInstance = $modal.open({
+        templateUrl: 'myModalContent.html',
+        controller: 'ModalInstanceCtrl',
+        size: size,
+        resolve: {
+          items: function() {
+            return $scope.items;
+          }
+        }
+      });
+      modalInstance.result.then(function(selectedItem) {
+        $scope.selected = selectedItem;
+      }, function() {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    };
+
+    var openLogin = function(size) {
       var modalInstance = $modal.open({
         templateUrl: 'myModalContent.html',
         controller: 'ModalInstanceCtrl',
@@ -2304,7 +2331,9 @@ angular.module('core').service('Socket', ['Authentication', '$state', '$timeout'
     function newTask(TasksService) {
       return new TasksService();
     }
+
     //    vm.task.dueDate = new Date();
+    $scope.authentication = Authentication;
     $scope.minDate = new Date();
     $scope.format = 'dd/MM/yyyy';
     $scope.altInputFormats = ['d!/M!/yyyy'];
@@ -2314,36 +2343,7 @@ angular.module('core').service('Socket', ['Authentication', '$state', '$timeout'
     };
 
     var app = this;
-    // $scope.taskCategories = [{
-    //   'cat': 'Cleaning',
-    //   'filter': 'vm.task.cleaning'
-    // } 
-    // // {
-    // //   'cat': 'Moving & Delivery',
-    // //   'filter': 'moving: true'
-    // // }, {
-    // //   'cat': 'DIY',
-    // //   'filter': 'DIY: true'
-    // // }, {
-    // //   'cat': 'Marketing & Design',
-    // //   'filter': 'marketing: true'
-    // // }, {
-    // //   'cat': 'Online & IT',
-    // //   'filter': 'online: true'
-    // // }, {
-    // //   'cat': 'Events & Photography',
-    // //   'filter': 'photoEvents: true'
-    // // }, {
-    // //   'cat': 'Business & Admin',
-    // //   'filter': 'office: true'
-    // // }, {
-    // //   'cat': 'Fun & Quirky',
-    // //   'filter': 'funQuirky: true'
-    // // }, {
-    // //   'cat': 'Misc & Other ',
-    // //   'filter': 'misc: true'
-    // // }
-    // ];
+
     app.closeAlert = function() {
       app.reason = null;
     };
@@ -2364,6 +2364,22 @@ angular.module('core').service('Socket', ['Authentication', '$state', '$timeout'
         app.reason = reason;
       });
     };
+
+    // app.loginOrTask = function() {
+    //   console.log('you clicked me');
+    //   // if($scope.authentication.user) {
+    //   //   console.log('logged in');
+
+    //   //   app.open();
+
+    //   // }
+    //   // else if (!$scope.authentication.user) {
+    //   //   console.log('not logged in');
+    //   //   openLogin();
+
+    //   // }
+    // };
+
   }
 })();
 (function () {
@@ -2550,41 +2566,34 @@ angular.module('core').service('Socket', ['Authentication', '$state', '$timeout'
             'cat': 'Misc & Other',
             'model': 'vm.task.misc'
         }];
-        // Remove existing Task
-        // function remove() {
-        //         if (confirm('Are you sure you want to delete?')) {
-        //             vm.task.$remove($state.go('tasks.list'));
-        //         }
-        //     }
-
 
         function remove() {
-            swal({   
-                title: "Are you sure?",
-                text: "You will not be able to recover this task!",   
-                type: "warning",   
-                showCancelButton: true,   
-                confirmButtonColor: "#DD6B55",   
-                confirmButtonText: "Yes, delete it!",   
-                cancelButtonText: "No, cancel please!",   
-                closeOnConfirm: false,   
-                closeOnCancel: false 
-            }, 
-                function(isConfirm){   
+                swal({
+                    title: "Are you sure?",
+                    text: "You will not be able to recover this task!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes, delete it!",
+                    cancelButtonText: "No, cancel please!",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                }, function(isConfirm) {
                     if (isConfirm) {
-                        swal("Deleted!", "Your task has been been deleted.", "success");
-                        vm.task.$remove($state.go('tasks.list'));
-                        $state.transitionTo($state.current, $state.params, {
-                            reload: true,
-                        inherit: false,
-                        notify: true
-                        })
-                    } 
-                else {     
-                    swal("Cancelled", "Your task is safe", "error");   
-                } 
-            });
-        }
+                        swal("Deleted!",
+                            "La tarea ha sido borrada",
+                            "success");
+                        vm.task.$remove().then(function() {
+                            $state.go('tasks.list', {}, {
+                                reload: true
+                            });
+                        });
+                    } else {
+                        swal("Cancelled", "Your task is safe",
+                            "error");
+                    }
+                });
+            }
             // Save Task
 
         function save(isValid) {
@@ -2601,9 +2610,14 @@ angular.module('core').service('Socket', ['Authentication', '$state', '$timeout'
                 }
 
                 function successCallback(res) {
-                    $state.go('tasks.view', {
-                        taskId: res._id
-                    });
+                    // $state.go('tasks.view', {
+                    //     taskId: res._id
+                    // });
+
+                    $state.go('tasks.view', {taskId: res._id}, {
+                                reload: true
+                            });
+
                 }
 
                 function errorCallback(res) {
@@ -2825,23 +2839,22 @@ angular.module('core').service('Socket', ['Authentication', '$state', '$timeout'
             // console.log(offersOnThisTask.length);
             for (var i = 0; i < offersOnThisTask.length; i++) {
                 if (offersOnThisTask[i].offerUserAverage) {
-                    
                     // console.log(offersOnThisTask[i].offerUserAverage.length);
-                    var numberOfRatingsForOfferUser = offersOnThisTask[i].offerUserAverage.length;
-
-                    for (var e = 0; e < offersOnThisTask[i].offerUserAverage.length; e++) {
-                        total += +offersOnThisTask[i].offerUserAverage[e].rating;
+                    var numberOfRatingsForOfferUser =
+                        offersOnThisTask[i].offerUserAverage.length;
+                    for (var e = 0; e < offersOnThisTask[i].offerUserAverage
+                        .length; e++) {
+                        total += +offersOnThisTask[i].offerUserAverage[
+                            e].rating;
                     }
-
-                    var userAverageRating = total / numberOfRatingsForOfferUser;
+                    var userAverageRating = total /
+                        numberOfRatingsForOfferUser;
                     vm.userAverageRating = userAverageRating;
                     // console.log(userAverageRating);
                     // console.log(total);
                 } //end of if there is a offerUserAverage
             } //end of for var i = 0
-        });//end of get offers
-
-        
+        }); //end of get offers
         vm.removeComment = function() {
             // var removed = vm.task.comments.splice(this.$index, 1);
             // console.log(removed);
@@ -2851,57 +2864,54 @@ angular.module('core').service('Socket', ['Authentication', '$state', '$timeout'
             //     taskId: vm.task._id
             // });
             //     // console.log(vm.commentID);
-
             // $http.post('/api/tasks/' + vm.task._id +
             //         '/delete-comment', data).success(function(
             //         data, status, headers, config) {
             //             console.log('deleted the comment');
             //     });
-
             //     function errorCallback(res) {
             //         vm.error = res.data.message;
             //     }
-
-            swal({   
+            swal({
                 title: "Are you sure?",
-                text: "You will not be able to recover this comment!",   
-                type: "warning",   
-                showCancelButton: true,   
-                confirmButtonColor: "#DD6B55",   
-                confirmButtonText: "Yes, delete it!",   
-                cancelButtonText: "No, cancel please!",   
-                closeOnConfirm: false,   
-                closeOnCancel: false 
-            }, 
-                function(isConfirm){   
-                    if (isConfirm) {
-                        var removed = vm.task.comments.splice(this.$index, 1);
-                        // console.log(removed);
-                            var data = ({
-                            comment: removed,
-                            commentID: removed[0]._id,
-                            taskId: vm.task._id
+                text: "You will not be able to recover this comment!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                cancelButtonText: "No, cancel please!",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            }, function(isConfirm) {
+                if (isConfirm) {
+                    var removed = vm.task.comments.splice(
+                        this.$index, 1);
+                    // console.log(removed);
+                    var data = ({
+                        comment: removed,
+                        commentID: removed[0]._id,
+                        taskId: vm.task._id
+                    });
+                    // console.log(vm.commentID);
+                    $http.post('/api/tasks/' + vm.task._id +
+                        '/delete-comment', data).success(
+                        function(data, status, headers,
+                            config) {
+                            // console.log('deleted the comment');
                         });
-                        // console.log(vm.commentID);
 
-                        $http.post('/api/tasks/' + vm.task._id +
-                                '/delete-comment', data).success(function(
-                                data, status, headers, config) {
-                                    // console.log('deleted the comment');
-                            });
-
-                        function errorCallback(res) {
-                            vm.error = res.data.message;
-                        }
-                        swal("Deleted!", "The comment has been been deleted.", "success");
-                    } 
-                else {     
-                    swal("Cancelled", "The comment is safe", "error");   
-                } 
+                    function errorCallback(res) {
+                        vm.error = res.data.message;
+                    }
+                    swal("Deleted!",
+                        "The comment has been been deleted.",
+                        "success");
+                } else {
+                    swal("Cancelled", "The comment is safe",
+                        "error");
+                }
             });
         }
-
-
         vm.cancel = function() {
             vm.$dismiss();
         };
@@ -2971,7 +2981,7 @@ angular.module('core').service('Socket', ['Authentication', '$state', '$timeout'
 angular.module('users.admin').run(['Menus',
   function (Menus) {
     Menus.addSubMenuItem('topbar', 'admin', {
-      title: 'Manage Users',
+      title: 'Manejar usuarios',
       state: 'admin.users'
     });
   }
@@ -3179,9 +3189,19 @@ angular.module('users').config(['$stateProvider',
 ]);
 'use strict';
 
-angular.module('users.admin').controller('UserListController', ['$scope', '$filter', 'Admin', 'chart.js',
+angular.module('users.admin').controller('UserListController', ['$scope', '$filter', 'Admin', 
   function($scope, $filter, Admin) {
 
+      
+      
+    $scope.labels = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre'];
+  $scope.series = ['Series A', 'Series B'];
+
+  $scope.data = [
+    [65, 59, 80, 81, 56, 55, 40, 70, 68],
+    [28, 48, 40, 19, 86, 27, 90, 95, 92]
+  ];
+      
     (function(w, d, s, g, js, fs) {
       g = w.gapi || (w.gapi = {});
       g.analytics = {
@@ -3335,34 +3355,7 @@ angular.module('users.admin').controller('UserListController', ['$scope', '$filt
 
     });
       
-    $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
-  $scope.series = ['Series A', 'Series B'];
-  $scope.data = [
-    [65, 59, 80, 81, 56, 55, 40],
-    [28, 48, 40, 19, 86, 27, 90]
-  ];
-  $scope.onClick = function (points, evt) {
-    console.log(points, evt);
-  };
-  $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-2' }];
-  $scope.options = {
-    scales: {
-      yAxes: [
-        {
-          id: 'y-axis-1',
-          type: 'linear',
-          display: true,
-          position: 'left'
-        },
-        {
-          id: 'y-axis-2',
-          type: 'linear',
-          display: true,
-          position: 'right'
-        }
-      ]
-    }
-  };
+
     Admin.query(function(data) {
       $scope.users = data;
       $scope.buildPager();

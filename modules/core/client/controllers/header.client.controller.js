@@ -15,6 +15,15 @@ angular.module('core').controller('HeaderController', ['$scope', '$state', 'Auth
       $scope.isCollapsed = !$scope.isCollapsed;
     };
 
+    var loginOrTask = function() {
+      if($scope.authentication.user) {
+        console.log('logged in');
+      }
+      else if (!$scope.authentication.user) {
+        console.log('not logged in');
+      }
+    };
+
     // Collapsing the menu after navigation
     $scope.$on('$stateChangeSuccess', function () {
       $scope.isCollapsed = false;
