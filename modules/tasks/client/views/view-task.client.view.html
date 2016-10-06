@@ -46,15 +46,15 @@
                 <div class="progress-bar progress-bar-danger" role="progressbar" tooltip-placement="right" tooltip="This task has been assigned and completed already!" style="width:33.3%" ng-show="vm.task.statusClosed"></div>
               </div>
               <div class="col-xs-12 progressState">
-                <div class="col-xs-4 text-center">Open</div>
-                <div class="col-xs-4 text-center">Assigned</div>
-                <div class="col-xs-4 text-center">Completed</div>
+                <div class="col-xs-4 text-center">Abierta</div>
+                <div class="col-xs-4 text-center">Asignada</div>
+                <div class="col-xs-4 text-center">Completada</div>
               </div>
       
-              <h3 class="viewTaskHeader">Descripción de tarea.</h3>
+              <h3 class="viewTaskHeader">Descripción de la tarea</h3>
             <p class="viewTaskPara">    
               <span ng-bind="vm.task.description"></span></p><br>
-                  <small>Categories:</small>
+                  <small>Categorías:</small>
                 <!-- cleaning -->
                 <li ng-show="vm.task.cleaning" class="skills-non-repeat task-view"><i class="fa fa-home" aria-hidden="true"></i> Cleaning task</li>
                 <!-- onlineIT -->
@@ -73,29 +73,18 @@
                 <li ng-show="vm.task.moving" class="skills-non-repeat task-view"><i class="fa fa-truck" aria-hidden="true"></i> Delivery &amp; moving task</li>
                 <!-- misc -->
                 <li ng-show="vm.task.misc" class="skills-non-repeat task-view"><i class="fa fa-cogs" aria-hidden="true"></i>  Misc. task</li>
-                <br>
-<!--
-                <small>Details:</small>
-                  <li class="skills-non-repeat task-view">Paid with Taskmatch Pay</li>
--->
-<!--
-                  <li class="skills-non-repeat task-view">
-<i class="fa fa-users" aria-hidden="true"></i> {{ vm.task.workerQty }} taskers required</li><br>
-                
--->
-             
-         
+                <br>  
                 <hr>
                 <div class="LocationCont">
                   <h3 class="viewTaskHeaderLoc">Ubicación de la tarea</h3>
                 <p class="viewTaskPara"> 
                     <span ng-bind="vm.task.taskLocation"></span></p>
-                    <small>To be completed:</small>
+                    <small>Completado por:</small>
                 <!-- inPersonTask -->
-                <li ng-show="vm.task.inPersonTask" class="skills-non-repeat task-view"><i class="fa fa-user" aria-hidden="true"></i> In person task</li>
+                <li ng-show="vm.task.inPersonTask" class="skills-non-repeat task-view"><i class="fa fa-user" aria-hidden="true"></i> Tarea presencial</li>
                 <!-- onlineTask -->
-                <li ng-show="vm.task.onlineTask" class="skills-non-repeat task-view"><i class="fa fa-laptop" aria-hidden="true"></i> Online task</li>
-                     <small>Due date:</small>
+                <li ng-show="vm.task.onlineTask" class="skills-non-repeat task-view"><i class="fa fa-laptop" aria-hidden="true"></i> Tarea Online</li>
+                     <small>Vencimiento:</small>
                   <li class="skills-non-repeat task-view"><i class="fa fa-clock-o" aria-hidden="true"></i>  {{ vm.task.dueDate | date:'fullDate' }}</li>
                 </div>
                 <hr>
@@ -106,7 +95,7 @@
                 </div>
                 <div class="col-sm-4 col-sm-12">
                   <div class="panel panel-default task-price">
-                    <div class="paidWithTask text-center">Será pagado con Etece Pay 
+                    <div class="paidWithTask text-center">Pagado con Etece Pay 
                       <span class="glyphicon glyphicon-question-sign" tooltip-placement="left" tooltip="When an offer is accepted the job posters funds for the task are securely held within a Etece trust account until the task is completed"></span>
                     </div>
                     <div class="panel-body noPadding">
@@ -126,13 +115,13 @@
                           </div>
                           <div ng-include="'/modules/tasks/client/views/offer.client.view.html'" class="offerInclude"></div>
                           <div class="modal-footer offerFooter">
-                            <button class="btn btn-default btn-sm" ng-click="cancel()">Close</button>
+                            <button class="btn btn-default btn-sm" ng-click="cancel()">Cerrar</button>
                           </div>
                         </script>
                         <!--=== offer modal ====-->
                         <div ng-if="!vm.task.isCurrentUserOwner">
                           <button class="makeAnOffer btn-block eteceButton hvr-underline-reveal" ng-click="open()" ng-hide="vm.task.statusAssigned">Hacer una oferta</button>
-                          <button class="taskAssigned btn-block" ng-disabled="disabled" ng-show="vm.task.statusAssigned" tooltip-placement="left" tooltip="You can no longer place an offer on this task">This task has been assigned</button>
+                          <button class="taskAssigned btn-block" ng-disabled="disabled" ng-show="vm.task.statusAssigned" tooltip-placement="left" tooltip="You can no longer place an offer on this task">Esta tarea ha sido asignada</button>
                         </div>
                       </div>
                       <!-- end of modalofferctrl -->
@@ -161,53 +150,35 @@
        <ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
                         <li role="menuitem">
                           <a ng-click="app.open()">
-                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Post a similar task
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Crear una tarea similar
                           </a>
                         </li>
                         <li role="menuitem">
                           <!--                    <a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i> Share on Twitter</a>-->
                           <a href="https://twitter.com/share" class="twitter-share-button" data-text="check out this task on Etece.es" data-via="amyloulala" data-related="Task_Match" data-hashtags="Etece">
-                            <i class="fa fa-twitter-square" aria-hidden="true"></i> Share on Twitter
+                            <i class="fa fa-twitter-square" aria-hidden="true"></i> Compartir en Twitter
                           </a>
                           <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
                         </li>
                         <li role="menuitem">
                           <a ng-click="fbshareCurrentPage()" target="_blank" alt="Share on Facebook">
-                            <i class="fa fa-facebook-square" aria-hidden="true"></i> Share on Facebook
+                            <i class="fa fa-facebook-square" aria-hidden="true"></i> Compartir en Facebook
                           </a>
                         </li>
                         <li class="divider"></li>
-                        <!--                 <li role="menuitem"><a href="#"><i class="fa fa-plus-square-o" aria-hidden="true"></i> Follow task</a></li><li role="menuitem"><a href="#"><i class="fa fa-flag" aria-hidden="true"></i> Report</a></li><li role="menuitem"><a href="#"><i class="fa fa-bell-o" aria-hidden="true"></i> Set up Alerts</a></li>   -->
                       </ul>
     </div>
                         </div>                    
                         
                      
-                    
-                    
-    <!--                        </div> ---->
-<!--                      <div class="col-xs-3 noPadding">-->
-<!--
-                    <button 
-                    class="attach-file pull-right eteceButton hvr-underline-reveal" 
-                    tooltip-placement="left" 
-                    tooltip="Click this button to toggle view of the task map." 
-                    ng-hide="vm.task.isCurrentUserOwner" 
-                    ng-click="vm.locationCollapsed = !vm.locationCollapsed">
-                    <i class="glyphicon glyphicon-map-marker"></i>
-                    </button>
--->
+            
                     </div>
-<!--
-                  </div>
-                      </div>
--->
-                  <small class="pull-left" ng-show="vm.task.user.additionalProvidersData.facebook && friendsofFriends || vm.task.user.provider === "facebook" && friendsofFriends">
+<!--                   <small class="pull-left" ng-show="vm.task.user.additionalProvidersData.facebook && friendsofFriends || vm.task.user.provider === "facebook" && friendsofFriends">
                     <img style="height:20px;width:20px;" src="modules/users/client/img/profile/1468796969_all_friends.png"/>
             You and {{ vm.task.user.displayName }} have {{ friendsofFriendsLength }} mutual friend(s)
             
                     <p ng-repeat="name in taskMutualFriendsArray">{{name}}</p>
-                  </small>
+                  </small> -->
                 </div>
                 <br>
                   <br>
@@ -215,8 +186,8 @@
                     </div>
                     <div class="container-fluid EndTask">
                       <!-- vm.task.isCurrentUserOwner ||  -->
-                      <div class="pull-right EndTask"
-       data-ng-show="vm.authentication.user.roles === "["user","admin"]" ">
+                             <!-- data-ng-show="vm.authentication.user.roles === "["user","admin"]"" -->
+                      <div class="pull-right EndTask">
                         <a class="btn editProfileBtns"
        data-ui-sref="tasks.edit({ taskId: vm.task._id })">
                           <i class="glyphicon glyphicon-edit"></i>
@@ -247,9 +218,9 @@
                         <div class="col-sm-12 noPadding" ng-show="vm.task.isCurrentUserOwner" ng-hide="vm.task.statusAssigned">
                           <!-- show if user is owner of task -->
                           <h3 class="viewTaskDescH ">
-                            <span class="badge">{{filtered.length}}</span> Ofertas para completar
+                            <span class="badge">{{filtered.length}}</span> Ofertas recibidas
                           </h3>
-                          <div class="alert alert-warning">View offers below then assign your task to get started. Once assigned, you can access private messages and exchange personal details.</div>
+                          <div class="alert alert-warning">Ver ofertas a continuación y luego asignar la tarea de empezar. Una vez asignado, se puede acceder a mensajes privados e intercambiar datos personales.</div>
                           <ul class="list-group" ng-repeat="offer in vm.task.offers | filter: { taskId : vm.task._id } : true | filter:query as filtered">
                             <li class="list-group-item offer">
                               <img data-ui-sref="profile({ userId : offer.user._id })" class="comments-user-img" alt="comments-user-profile-img" src="{{ offer.profileImageURL }}" onerror="if (this.src != 'default.png') this.src = '../modules/users/client/img/profile/default.png';">
@@ -281,10 +252,10 @@
                         <div class="col-sm-12 noPadding">
                           <div ng-hide="vm.task.statusAssigned">
                             <div class="col-sm-12 noPadding" ng-hide="vm.task.isCurrentUserOwner">
-                              <h3 class="viewTaskDescH">Ofertas para completar</h3>
+                              <h3 class="viewTaskDescH">Ofertas recibidas</h3>
                               <div class="alert alert-warning" role="alert" ng-show="offersMade.length === 0">
-          There are no offers yet on this task. 
-                                <a ng-click="open()" class="alert-link">Why not make one?</a>
+          No hay ninguna oferta en esta tarea.
+                                <a ng-click="open()" class="alert-link">¿Por qué no hacer una?</a>
                               </div>
                               <ul class="list-group" ng-repeat="offer in vm.task.offers | filter: { taskId : vm.task._id } : true | filter:query as offersMade">
                                 <li class="list-group-item offer">
@@ -320,10 +291,10 @@
                             <!-- class="col-sm-12" -->
                             <div>
                               <h3 class="viewTaskDescH" ng-hide="vm.task.comments.length > 1 || vm.task.comments.length === 0">
-                                <span class="badge">{{ vm.task.comments.length }}</span> comment about this task
+                                <span class="badge">{{ vm.task.comments.length }}</span> comentario sobre esta tarea
                               </h3>
                               <h3 class="viewTaskDescH" ng-show="vm.task.comments.length > 1 || vm.task.comments.length === 0">
-                                <span class="badge">{{ vm.task.comments.length }}</span> Comentarios sobre esta tarea
+                                <span class="badge">{{ vm.task.comments.length }}</span> comentarios sobre esta tarea
                               </h3>
                               <ul class="list-group" ng-repeat="comment in vm.task.comments | filter: { visible: true } : true">
                                 <input hidden ng-value="{{comment._id}}" ng-model="vm.commentID"/>
@@ -343,14 +314,13 @@
                                     </li>
                                   </ul>
                                   <div ng-show="vm.task.statusAssigned" class="text-center">
-                                    <li class="skills-non-repeat task-view">Comments are now closed</li>
+                                    <li class="skills-non-repeat task-view">Comentarios están cerrados</li>
                                   </div>
                                   <div ng-hide="vm.task.statusAssigned">
                                     <form name="vm.form.taskForm" class="form-horizontal" ng-submit="vm.newCo()" novalidate>
-                                      <input type="text" ng-model="vm.task.newComment" name="comments" id="comments" class="form-control" placeholder="ask a question about this task" maxlength="500">
-                                        <small>{{ 500 - vm.task.newComment.length}} chars remaining</small>
+                                      <input type="text" ng-model="vm.task.newComment" name="comments" id="comments" class="form-control" placeholder="hacer una pregunta sobre esta tarea" maxlength="500">
+                                        <small>{{ 500 - vm.task.newComment.length}} chars pendientes</small>
                                         <br>
-                                          <!--     <button type="button" ng-disabled="vm.form.taskForm.$invalid" class="attach-file pull-left">Attach a file</button> -->
                                           <button type="submit" ng-disabled="vm.form.taskForm.$invalid" class="submit-comment myEteceReuseButton hvr-underline-reveal pull-right">Añadir un comentario</button>
                                         </form>
                                       </div>

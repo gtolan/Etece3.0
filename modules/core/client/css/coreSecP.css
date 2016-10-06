@@ -2369,6 +2369,7 @@ input.formRegInputHome {
     margin-bottom: 100px;
 }
 
+<<<<<<< HEAD
 /*===================since latest git*/
 .viewUserPage {
     margin-left: 20%;
@@ -2402,3 +2403,17 @@ box-shadow: 3px 3px 18px 8px rgba(0,0,0,0.33);
     position: absolute;
     top: 4px;
 }
+=======
+.skills-non-repeat {
+  background-color: #dcf3ff;
+  font-size: 12px;
+  border: 1px solid #9c9c9c;
+  margin: .1em;
+  border-radius: 23px;
+  list-style: none;
+  display: inline-block;
+  position: relative;
+  word-break: break-word;
+  padding: .5em;
+}
+>>>>>>> master

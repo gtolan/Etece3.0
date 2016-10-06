@@ -8,31 +8,26 @@
     "button" style="font-size:33px;">&times;</button>
             </div>
   </div>
-  <!--   ng-submit="vm.save(vm.form.taskForm.$valid)" -->
   <div class="modal-body">
     <form class="form-horizontal" id="vm.form.taskForm" name="vm.form.taskForm" ng-submit="vm.form.taskForm.$valid && vm.save()"
  novalidate>
       <fieldset>
         <div class="btn-group btn-xs progressmodalBtns">
           <button class="btn btn-xs btn-primary" ng-class=
-          "{'btn-primary btn-sm':vm.isCurrentStep(0)}" ng-click=
+          "{'btn btn-xs btn-success':vm.isCurrentStep(0)}" ng-click=
           "vm.setCurrentStep(0)">Detalles</button>
           <button class=
           "btn btn-xs btn-primary" ng-class=
           "{'btn-primary btn-sm':vm.isCurrentStep(1)}" ng-click=
-          "vm.setCurrentStep(1)" ng-disabled="vm.form.taskForm.taskTitle.$untouched || vm.form.taskForm.taskTitle.$touched && vm.form.taskForm.taskTitle.$invalid || vm.form.taskForm.taskDescription.$touched && vm.form.taskForm.taskDescription.$invalid">Localidad</button>
-<!--           || vm.form.taskForm.$invalid || vm.form.taskForm.taskTitle.$touched && vm.form.taskForm.taskTitle.$invalid || vm.form.taskForm.taskDescription.$touched && vm.form.taskForm.taskDescription.$invalid -->
+          "vm.setCurrentStep(1)">Localidad</button>
           <button class=
           "btn btn-xs btn-primary" ng-class=
           "{'btn-primary btn-sm':vm.isCurrentStep(2)}" ng-click=
-          "vm.setCurrentStep(2)" ng-disabled="vm.form.taskForm.taskTitle.$touched || vm.form.taskForm.taskDescription.$touched && vm.form.taskForm.taskDescription.$invalid || vm.form.taskForm.taskDescription.$pristine || vm.form.taskForm.taskLocation.$untouched || vm.form.taskForm.workerQty.$untouched">
+          "vm.setCurrentStep(2)">
 Presupuesto</button>
-<!--           vm.form.taskForm.$invalid || vm.form.taskForm.taskLocation.$touched && vm.form.taskForm.taskLocation.$invalid && vm.form.taskForm.taskDate.$invalid && vm.form.taskForm.workerQty.$invalid -->
         </div>
-        <!--         vm.form.taskForm.taskTitle.$touched && || vm.form.taskForm.taskDescription.$touched &&  -->
         <div class="slide-frame" ng-switch="vm.getCurrentStep()">
           <div class="wave" ng-switch-when="one">
-            <!--==      <fieldset> ==-->
             <div class="form-group divTaskModalTitle">
               <label class="control-label ModalTitleTask" for="taskTitle">Título 
                 <span aria-hidden="true" class=
@@ -40,9 +35,6 @@ Presupuesto</button>
               "Texto corto que identifica en qué consiste la tarea"
               tooltip-placement="right"></span>
               </label><br>
-              
-                  
-            
               <input name="taskTitle" id="taskTitle" class=
               "form-control TaskTitleInput" id="TaskTitle" ng-model=
               "vm.task.title" placeholder="Por ejemplo: Recoger y montar muebles de Ikea" type="text" ng-minlength="10" ng-maxlength="50" required autofocus>
@@ -97,7 +89,6 @@ su título es demasiado corto
                   </div>
                 </div>
                 <small ng-if="vm.task.description.length > 23">{{ 250 - vm.task.description.length}} characters remaining</small>
-                <!--              </div>-->
               </div>
               <div class="form-group">
                 <div>
@@ -112,10 +103,8 @@ su título es demasiado corto
                   </a>
                 </div>
               </div>
-              <!--==      <fieldset> ==-->
             </div>
             <div class="wave" ng-switch-when="two">
-              <!--==      <fieldset> ==-->
               <div class="col-xs-6 noPadding">
                 <div class="form-group">
                   <label class="control-label" for="taskLocation">Dirección <span aria-hidden="true" class=
@@ -156,37 +145,6 @@ su título es demasiado corto
           required.</p>
                   </div>
                 </div>
-<!--
-                <div class="col-xs-6 noPadding">
-                  <div class="form-group">
-                    <label class="control-label" for="select01">How Many Workers
-                </label>
-                    <div class="controls">
-                      <select class="form-control" id="select01" name="workerQty" ng-model=
-                  "vm.task.workerQty">
-                        <option>
-                      Unlimited
-                    </option>
-                        <option>
-                        1  
-                    </option>
-                        <option>
-                      2
-                    </option>
-                        <option>
-                      3
-                    </option>
-                        <option>
-                      4
-                    </option>
-                        <option>
-                      5 +
-                    </option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
--->
                 <div class="col-xs-12 noPadding">
   
                 <div class="col-xs-6 noPadding">
@@ -253,30 +211,7 @@ su título es demasiado corto
         </ul>
     </script>
                   </div>
-                  </div>       
-                      
-                      
-                  <!-- onlineTask -->
-<!--
-                  <div class="btn-group " dropdown="">
-                    <div class="btn-group catButDropd" dropdown="" dropdown-append-to-body="">
-                      <button class="btn splitCategBt" dropdown-toggle=
-                  "" id="btn-append-to-body" type="button">Category
-                  
-
-                      </button>
-                      <ul aria-labelledby="split-button" class=
-                  "dropdown-menu categDropD" role="menu">
-
-                      
-                      </ul>
--->
-                 
-           
-                    
-                            
-            
-               
+                  </div>                            
                   <div class="col-xs-6 noPadding " style="overflow: scroll;">
                     <label class="control-label">Summary</label><br>
                     <!-- cleaning -->
@@ -298,16 +233,13 @@ su título es demasiado corto
                     <!-- misc -->
                     <li ng-show="vm.task.misc" class="skills-non-repeat task-view"><i class="fa fa-cogs" aria-hidden="true"></i> Misc.</li>
                   </div>
-          </div>            
-                    
-                    
-                    
+          </div>             
                 </div>
                 <div class="wave" ng-switch-when="three">
                   <div class="form-group">
                     <div class="row">
                       <div class="col-xs-6 leftFinalTaskSide">
-                        <h3>Muchas Gracias!
+                        <h3>¡Muchas Gracias!
                         </h3>
                           
                 <div class="col-xs-12 noPadding">
@@ -318,7 +250,7 @@ su título es demasiado corto
                         <i class="fa fa-laptop" aria-hidden="true"></i> Online task
                       </label>
                       <label ng-disabled="vm.task.onlineTask" class="btn skills-repeat-white" ng-model="vm.task.inPersonTask"btn-checkbox>
-                        <i class="fa fa-user" aria-hidden="true"></i> Tarea presencia
+                        <i class="fa fa-user" aria-hidden="true"></i> Tarea presencial
                       </label>
                     </div>
                   </div>   
@@ -375,11 +307,6 @@ su título es demasiado corto
                           <li ng-show="vm.task.moving" class="skills-non-repeat task-view">Moving task</li>
                           <!-- misc -->
                           <li ng-show="vm.task.misc" class="skills-non-repeat task-view">Misc. task</li>
-<!--
-                          <p>
-                            <strong>How many workers:</strong>{{vm.task.workerQty}}
-                          </p>
--->
                           <p>
                             <strong>Due Date:</strong>{{vm.task.dueDate | date:'fullDate'}}
                           </p>
@@ -399,7 +326,7 @@ su título es demasiado corto
             <div class="form-group"></div>
             <a class="myBackButton modalCreate" ng-click="vm.handlePrevious()" ng-show=
     "!vm.isFirstStep()">Back</a>
-            <button type="submit" ng-disabled="vm.form.taskForm.taskTitle.$untouched || vm.form.taskForm.taskTitle.$touched && vm.form.taskForm.taskTitle.$invalid || vm.form.taskForm.taskDescription.$touched && vm.form.taskForm.taskDescription.$invalid" class="myEteceReuseButton modalCreate hvr-underline-reveal" ng-click=
+            <button type="submit" class="myEteceReuseButton modalCreate hvr-underline-reveal" ng-click=
     "vm.handleNext()">{{vm.getNextLabel()}}</button>
           </div>
         </div><!-- 
