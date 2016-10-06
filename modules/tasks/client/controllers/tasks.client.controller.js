@@ -155,41 +155,34 @@
             'cat': 'Misc & Other',
             'model': 'vm.task.misc'
         }];
-        // Remove existing Task
-        // function remove() {
-        //         if (confirm('Are you sure you want to delete?')) {
-        //             vm.task.$remove($state.go('tasks.list'));
-        //         }
-        //     }
-
 
         function remove() {
-            swal({   
-                title: "Are you sure?",
-                text: "You will not be able to recover this task!",   
-                type: "warning",   
-                showCancelButton: true,   
-                confirmButtonColor: "#DD6B55",   
-                confirmButtonText: "Yes, delete it!",   
-                cancelButtonText: "No, cancel please!",   
-                closeOnConfirm: false,   
-                closeOnCancel: false 
-            }, 
-                function(isConfirm){   
+                swal({
+                    title: "Are you sure?",
+                    text: "You will not be able to recover this task!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes, delete it!",
+                    cancelButtonText: "No, cancel please!",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                }, function(isConfirm) {
                     if (isConfirm) {
-                        swal("Deleted!", "Your task has been been deleted.", "success");
-                        vm.task.$remove($state.go('tasks.list'));
-                        $state.transitionTo($state.current, $state.params, {
-                            reload: true,
-                        inherit: false,
-                        notify: true
-                        })
-                    } 
-                else {     
-                    swal("Cancelled", "Your task is safe", "error");   
-                } 
-            });
-        }
+                        swal("Deleted!",
+                            "La tarea ha sido borrada",
+                            "success");
+                        vm.task.$remove().then(function() {
+                            $state.go('tasks.list', {}, {
+                                reload: true
+                            });
+                        });
+                    } else {
+                        swal("Cancelled", "Your task is safe",
+                            "error");
+                    }
+                });
+            }
             // Save Task
 
         function save(isValid) {
@@ -206,9 +199,14 @@
                 }
 
                 function successCallback(res) {
-                    $state.go('tasks.view', {
-                        taskId: res._id
-                    });
+                    // $state.go('tasks.view', {
+                    //     taskId: res._id
+                    // });
+
+                    $state.go('tasks.view', {taskId: res._id}, {
+                                reload: true
+                            });
+
                 }
 
                 function errorCallback(res) {
@@ -430,23 +428,22 @@
             // console.log(offersOnThisTask.length);
             for (var i = 0; i < offersOnThisTask.length; i++) {
                 if (offersOnThisTask[i].offerUserAverage) {
-                    
                     // console.log(offersOnThisTask[i].offerUserAverage.length);
-                    var numberOfRatingsForOfferUser = offersOnThisTask[i].offerUserAverage.length;
-
-                    for (var e = 0; e < offersOnThisTask[i].offerUserAverage.length; e++) {
-                        total += +offersOnThisTask[i].offerUserAverage[e].rating;
+                    var numberOfRatingsForOfferUser =
+                        offersOnThisTask[i].offerUserAverage.length;
+                    for (var e = 0; e < offersOnThisTask[i].offerUserAverage
+                        .length; e++) {
+                        total += +offersOnThisTask[i].offerUserAverage[
+                            e].rating;
                     }
-
-                    var userAverageRating = total / numberOfRatingsForOfferUser;
+                    var userAverageRating = total /
+                        numberOfRatingsForOfferUser;
                     vm.userAverageRating = userAverageRating;
                     // console.log(userAverageRating);
                     // console.log(total);
                 } //end of if there is a offerUserAverage
             } //end of for var i = 0
-        });//end of get offers
-
-        
+        }); //end of get offers
         vm.removeComment = function() {
             // var removed = vm.task.comments.splice(this.$index, 1);
             // console.log(removed);
@@ -456,57 +453,54 @@
             //     taskId: vm.task._id
             // });
             //     // console.log(vm.commentID);
-
             // $http.post('/api/tasks/' + vm.task._id +
             //         '/delete-comment', data).success(function(
             //         data, status, headers, config) {
             //             console.log('deleted the comment');
             //     });
-
             //     function errorCallback(res) {
             //         vm.error = res.data.message;
             //     }
-
-            swal({   
+            swal({
                 title: "Are you sure?",
-                text: "You will not be able to recover this comment!",   
-                type: "warning",   
-                showCancelButton: true,   
-                confirmButtonColor: "#DD6B55",   
-                confirmButtonText: "Yes, delete it!",   
-                cancelButtonText: "No, cancel please!",   
-                closeOnConfirm: false,   
-                closeOnCancel: false 
-            }, 
-                function(isConfirm){   
-                    if (isConfirm) {
-                        var removed = vm.task.comments.splice(this.$index, 1);
-                        // console.log(removed);
-                            var data = ({
-                            comment: removed,
-                            commentID: removed[0]._id,
-                            taskId: vm.task._id
+                text: "You will not be able to recover this comment!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                cancelButtonText: "No, cancel please!",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            }, function(isConfirm) {
+                if (isConfirm) {
+                    var removed = vm.task.comments.splice(
+                        this.$index, 1);
+                    // console.log(removed);
+                    var data = ({
+                        comment: removed,
+                        commentID: removed[0]._id,
+                        taskId: vm.task._id
+                    });
+                    // console.log(vm.commentID);
+                    $http.post('/api/tasks/' + vm.task._id +
+                        '/delete-comment', data).success(
+                        function(data, status, headers,
+                            config) {
+                            // console.log('deleted the comment');
                         });
-                        // console.log(vm.commentID);
 
-                        $http.post('/api/tasks/' + vm.task._id +
-                                '/delete-comment', data).success(function(
-                                data, status, headers, config) {
-                                    // console.log('deleted the comment');
-                            });
-
-                        function errorCallback(res) {
-                            vm.error = res.data.message;
-                        }
-                        swal("Deleted!", "The comment has been been deleted.", "success");
-                    } 
-                else {     
-                    swal("Cancelled", "The comment is safe", "error");   
-                } 
+                    function errorCallback(res) {
+                        vm.error = res.data.message;
+                    }
+                    swal("Deleted!",
+                        "The comment has been been deleted.",
+                        "success");
+                } else {
+                    swal("Cancelled", "The comment is safe",
+                        "error");
+                }
             });
         }
-
-
         vm.cancel = function() {
             vm.$dismiss();
         };

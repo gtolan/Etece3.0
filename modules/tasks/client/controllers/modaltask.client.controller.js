@@ -36,7 +36,9 @@
     function newTask(TasksService) {
       return new TasksService();
     }
+
     //    vm.task.dueDate = new Date();
+    $scope.authentication = Authentication;
     $scope.minDate = new Date();
     $scope.format = 'dd/MM/yyyy';
     $scope.altInputFormats = ['d!/M!/yyyy'];
@@ -46,36 +48,7 @@
     };
 
     var app = this;
-    // $scope.taskCategories = [{
-    //   'cat': 'Cleaning',
-    //   'filter': 'vm.task.cleaning'
-    // } 
-    // // {
-    // //   'cat': 'Moving & Delivery',
-    // //   'filter': 'moving: true'
-    // // }, {
-    // //   'cat': 'DIY',
-    // //   'filter': 'DIY: true'
-    // // }, {
-    // //   'cat': 'Marketing & Design',
-    // //   'filter': 'marketing: true'
-    // // }, {
-    // //   'cat': 'Online & IT',
-    // //   'filter': 'online: true'
-    // // }, {
-    // //   'cat': 'Events & Photography',
-    // //   'filter': 'photoEvents: true'
-    // // }, {
-    // //   'cat': 'Business & Admin',
-    // //   'filter': 'office: true'
-    // // }, {
-    // //   'cat': 'Fun & Quirky',
-    // //   'filter': 'funQuirky: true'
-    // // }, {
-    // //   'cat': 'Misc & Other ',
-    // //   'filter': 'misc: true'
-    // // }
-    // ];
+
     app.closeAlert = function() {
       app.reason = null;
     };
@@ -96,5 +69,21 @@
         app.reason = reason;
       });
     };
+
+    // app.loginOrTask = function() {
+    //   console.log('you clicked me');
+    //   // if($scope.authentication.user) {
+    //   //   console.log('logged in');
+
+    //   //   app.open();
+
+    //   // }
+    //   // else if (!$scope.authentication.user) {
+    //   //   console.log('not logged in');
+    //   //   openLogin();
+
+    //   // }
+    // };
+
   }
 })();
