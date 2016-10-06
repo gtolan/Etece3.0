@@ -334,18 +334,44 @@ assigned:hover {
   -webkit-animation-duration: 1.5s ;
   animation-duration: 1.5s ;
 }
+
+.showmeMapView.ng-hide-add {
+ -webkit-animation-name: zoomOutDown ;
+  animation-name: zoomOutDown;
+  -webkit-animation-duration: 1.4s ;
+  animation-duration: 1.4s ;
+}
+
+
+.showBoxOne.ng-hide-add .showmeMapView.ng-hide-remove {
+    -webkit-animation-name: zoomInUp;
+  animation-name: zoomInUp;
+  -webkit-animation-duration: 1.5s ;
+  animation-duration: 1.5s ;
+}
+
+.showBoxOne.ng-hide-remove .showmeMapView.ng-hide-add {
+    -webkit-animation-name: zoomOutDown ;
+  animation-name: zoomOutDown;
+  -webkit-animation-duration: 1.4s ;
+  animation-duration: 1.4s ;
+}
+
+
 .showBoxOne.ng-hide-remove {
     -webkit-animation-name: slideInRight;
   animation-name: slideInRight;
   -webkit-animation-duration: 1.5s ;
   animation-duration: 1.5s ;
 }
+/*
 .showmeMapView.ng-hide-add {
     -webkit-animation-name: zoomOutDown ;
   animation-name: zoomOutDown;
   -webkit-animation-duration: 1.4s ;
   animation-duration: 1.4s ;
 }
+*/
 .showmeMapView.ng-hide-remove {
     -webkit-animation-name: zoomInUp;
   animation-name: zoomInUp;
@@ -513,11 +539,13 @@ assigned:hover {
 .SocialLinks {
   color: #b0bfc3;
   cursor: pointer;
+
 }
 
 .SocialLinks.a {
   color: #b0bfc3;
   cursor: pointer;
+   
 }
 
 .howitWorksA {

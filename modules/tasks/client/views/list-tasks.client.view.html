@@ -84,9 +84,15 @@
             </div> 
     </div>
     
+<<<<<<< HEAD
+            <div class="newTasksToday row">
+            <p class="text-center"> There are X new Tasks </p>
+            </div>
+=======
     <div class="newTasksToday row">
     <p class="text-center"> Hay X nuevas tareas </p>
     </div>
+>>>>>>> master
         <div class="scrollable ">
     
      
@@ -118,8 +124,9 @@
                     <div class="col-xs-3 noPadding PriceSection text-center">
                        <h3 class="text-center taskPriceRepeat">&euro;{{task.price}}</h3> 
                           <md-button class="md-raised md-primary applyBut2" ng-hide="task.statusAssigned && !showmeMapView"  data-ui-sref="tasks.view({ taskId: task._id })"
+                     
                                      
-                                     ng-click="showBoxOne = !showBoxOne; showmeMapView=true"
+                ng-click="showmeMapView = !showmeMapView; showBoxOne=true"
                                      >Aplicar Ahora</md-button>
 <!--                         <button class="btn-primary btn-block EarnBut" ng-hide="task.statusAssigned" data-ui-sref="tasks.view({ taskId: task._id })" ng-click="showme=false">Apply now</button>-->
                          <button disabled class="btn btn-default assigned" ng-disabled="disabled" ng-show="task.statusAssigned && !task.statusClosed" data-ui-sref="tasks.view({ taskId: task._id })" ng-click="showme=false" disabled/>Asignado</button>
