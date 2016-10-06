@@ -3,7 +3,8 @@
 angular.module('users.admin').controller('UserListController', ['$scope', '$filter', 'Admin', 
   function($scope, $filter, Admin) {
 
-      
+  $scope.labelsPieChart = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
+  $scope.pieData = [300, 500, 100];  
       
     $scope.labels = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre'];
   $scope.series = ['Series A', 'Series B'];

@@ -1720,10 +1720,7 @@ background-color: #4267b2 !important;
    color:dimgray !important;
     font-weight: 500;
 }
-.adminPage {
-   margin-left: 15%;
-    margin-right: 15%;
-}
+
 .eteceButton {
     border:1px solid #4267b2;
     background-color: #4267b2;
@@ -2355,6 +2352,8 @@ input.formRegInputHome {
     width: 40%;
     margin-left: 40%;
     background-color: rgba(0,0,0,.43);
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
 }
 
 .socialSignButtonsRepair {
@@ -2368,4 +2367,38 @@ input.formRegInputHome {
     width: 50%;
     height: 250px;
     margin-bottom: 100px;
+}
+
+/*===================since latest git*/
+.viewUserPage {
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 5em;
+    margin-bottom: 5em;
+           -webkit-box-shadow: 3px 3px 18px 8px rgba(0,0,0,0.33);
+-moz-box-shadow: 3px 3px 18px 8px rgba(0,0,0,0.33);
+box-shadow: 3px 3px 18px 8px rgba(0,0,0,0.33);
+}
+.registerTitle {
+    color: white;
+    font-size: 24px;
+}
+.rolesRow {
+    padding-bottom: 30px;
+}
+.adminPage {
+   margin-left: 15%;
+    margin-right: 15%;
+    margin-bottom: 7em
+}
+.myTaskProf {
+    margin: 0px !important;
+    margin-left: 0em !important;
+    width: 4.0em !important;
+    height: 4.0em !important;
+    margin-top: .3em !important;
+}
+.icons {
+    position: absolute;
+    top: 4px;
 }
