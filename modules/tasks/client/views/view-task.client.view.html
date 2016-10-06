@@ -220,7 +220,7 @@
                           <h3 class="viewTaskDescH ">
                             <span class="badge">{{filtered.length}}</span> Ofertas recibidas
                           </h3>
-                          <div class="alert alert-warning">View offers below then assign your task to get started. Once assigned, you can access private messages and exchange personal details.</div>
+                          <div class="alert alert-warning">Ver ofertas a continuación y luego asignar la tarea de empezar. Una vez asignado, se puede acceder a mensajes privados e intercambiar datos personales.</div>
                           <ul class="list-group" ng-repeat="offer in vm.task.offers | filter: { taskId : vm.task._id } : true | filter:query as filtered">
                             <li class="list-group-item offer">
                               <img data-ui-sref="profile({ userId : offer.user._id })" class="comments-user-img" alt="comments-user-profile-img" src="{{ offer.profileImageURL }}" onerror="if (this.src != 'default.png') this.src = '../modules/users/client/img/profile/default.png';">
@@ -318,7 +318,7 @@
                                   </div>
                                   <div ng-hide="vm.task.statusAssigned">
                                     <form name="vm.form.taskForm" class="form-horizontal" ng-submit="vm.newCo()" novalidate>
-                                      <input type="text" ng-model="vm.task.newComment" name="comments" id="comments" class="form-control" placeholder="ask a question about this task" maxlength="500">
+                                      <input type="text" ng-model="vm.task.newComment" name="comments" id="comments" class="form-control" placeholder="hacer una pregunta sobre esta tarea" maxlength="500">
                                         <small>{{ 500 - vm.task.newComment.length}} chars pendientes</small>
                                         <br>
                                           <button type="submit" ng-disabled="vm.form.taskForm.$invalid" class="submit-comment myEteceReuseButton hvr-underline-reveal pull-right">Añadir un comentario</button>
